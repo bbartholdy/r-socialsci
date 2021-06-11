@@ -2,7 +2,7 @@
 title: "Getting started with R Markdown"
 teaching: 30
 exercises: 15
-output:
+output: 
   html_document:
     df_print: paged
 objectives:
@@ -197,7 +197,7 @@ The keyboard shortcut for inserting a code chunk in RStudio is
 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, or
 <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.
 
-Insert table with `knitr::kable`.
+<!-- Insert table with caption using `knitr::kable`. -->
 
 ### In-line R code
 
@@ -217,7 +217,7 @@ accordingly. Pretty useful for those of us who are prone to data entry errors!
 Next we will also include a plot, so our document is a little more colourful, and
 a little less boring.
 
-Exercise: Create a code chunk with code to output a plot.
+<!-- Exercise: Create a code chunk with code to output a plot. -->
 
 ### Customising chunk output
 
@@ -226,9 +226,9 @@ in the output document.
 
 | Option | Output |
 |---|---|
-| `eval` | `TRUE` or `FALSE`. Whether or not the code within the code chunk should be run. |
-| `echo` | `TRUE` or `FALSE`. Choose if you want to show your code chunk in the output document. `echo=TRUE` will show the code chunk. |
-| `include` | `TRUE` or `FALSE`. Choose if the output of a code chunk should be included in the document. `FALSE` means that your code will run, but will not show up in the document. |
+| `eval=<TRUE,FALSE>` | Whether or not the code within the code chunk should be run. |
+| `echo=<TRUE,FALSE>` | Choose if you want to show your code chunk in the output document. `echo=TRUE` will show the code chunk. |
+| `include=<TRUE,FALSE>` | Choose if the output of a code chunk should be included in the document. `FALSE` means that your code will run, but will not show up in the document. |
 
 The options are entered in the code chunk after `chunk_name` and separated by commas ','
 e.g. `{r} chunk_name, eval=FALSE`.
@@ -236,7 +236,7 @@ e.g. `{r} chunk_name, eval=FALSE`.
 The default settings for your document are: `eval=TRUE`, `echo=TRUE`, `include=TRUE`.
 These can be modified with `knitr::opts_chunk$set()`, but we will not focus on that here.
 
-Exercise: play around with the options
+<!-- Exercise: play around with the options -->
 
 ## Other cool things R Markdown can do
 
