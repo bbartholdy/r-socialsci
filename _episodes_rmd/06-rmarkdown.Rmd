@@ -1,0 +1,261 @@
+---
+title: "Getting started with R Markdown"
+teaching: 30
+exercises: 15
+output:
+  html_document:
+    df_print: paged
+objectives:
+- Create a .Rmd document containing R code, text, and plots
+- Create a YAML header to control output
+- Understand basic syntax of (R)Markdown
+- Customise code chunks to control formatting
+- Use code chunks and inline code to create dynamic documents
+- Understand how R Markdown can be used to create reproducible reports
+keypoints: Rmd is a popular ... for creating reproducible reports, articles, and theses.
+source: Rmd
+questions:
+- What is R Markdown?
+- How can I integrate my R code with text and plots?
+- How can I convert .Rmd files to .html, .pdf, and .docx?
+---
+
+```{r setup, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("06-")
+source("../bin/download_data.R")
+```
+
+## R Markdown
+
+R Markdown is a flexible type of document that allows you to combine code and
+text into a single document...
+
+The benefit of a well-prepared R Markdown document is full reproducibility. This
+also means that, if you notice a data transcription error, or you are able to add 
+more data to your analysis, you will be able to recompile the report with the new
+data, without making any changes in the actual document (unless your interpretations
+change drastically).
+
+It relies on the **rmarkdown** package.
+
+## Creating an R Markdown file
+
+To create a new R Markdown document in RStudio, click File -> New File -> R Markdown:
+
+![Screenshot of the New R Markdown file dialogue box in RStudio](../fig/new-rmd.png)
+
+Then click on 'Create Empty Document'. Normally you could enter the title of your
+document, your name (Author), and select the type of output, but we will be learning
+how to start from a blank document.
+
+## Basic components of R Markdown
+
+To create a basic output, a YAML (Yet Another Markup Language) header is needed.
+
+```
+---
+title: "My Awesome Report"
+author: "My Awesome Name"
+date: ""
+output: html_document
+---
+```
+
+The only necessary field is the `output:`, which specifies the type of output you
+want. The rest can be deleted if you don't need them. To start the document, 
+we will begin writing below the YAML header (after the second `---`).
+
+## Markdown syntax
+
+Markdown is ...
+
+First, let's create a header:
+
+```
+# Title
+## Section
+### Sub-section
+#### Sub-sub section
+##### Sub-sub-sub section
+```
+
+Since we have already defined our title in the YAML header, we will use a section
+header.
+
+```
+## A meaningful header
+
+Some meaningful text to go along with my meaningful header.
+```
+
+You can make things **bold** by surrounding the word with double asterisks, 
+`**bold**`, or double underscores, `__bold__`; and *italicize* using single asterisks,
+`*italics*`, or single underscores, `_italics_`.
+
+You can also combine **bold** and *italics* to write something ***really*** 
+important with triple-asterisks, `***really***`, or underscores, `___really___`;
+and, if you're feeling bold (pun intended), you can also use a combination of
+asterisks and underscores, **_really_**. Just be consistent...
+
+To create `code-type` font, surround the word with backticks.
+
+Now that we've learned a couple of things, it might be useful to create a list so
+we don't forget:
+
+```
+- bold with double-asterisks
+- italics with underscores
+- code-type font with backticks
+```
+
+You can also create an ordered list using numbers:
+
+```
+1. bold with double-asterisks
+2. italics with underscores
+3. code-type font with backticks
+```
+
+And nested items by tab-indenting:
+
+```
+- bold with double-asterisks
+  + or double-underscores
+- italics with underscores
+  + or double-asterisks
+- bold and italics with triple-asterisks
+  + or triple-underscores
+    - or a combination of both
+- code-type font with backticks
+```
+
+For more Markdown syntax see [here](https://www.markdownguide.org/basic-syntax).
+
+The new visual Markdown editor in RStudio (from version 1.4) may make this easier
+for you...
+
+## Creating an R Markdown document
+
+We will be writing a report based on our previous data wrangling and visualisation,
+so we will need the data we worked with previously.
+
+That means we need to make sure **tidyverse** is loaded:
+
+```{r load-package, message=FALSE, purl=FALSE}
+library(tidyverse)
+```
+
+And, if not still in the workspace, load the data we saved in the previous lesson:
+
+```{r load-data, message=FALSE, purl=FALSE}
+interviews_plotting <- read_csv("data_output/interviews_plotting.csv")
+```
+
+If you were unable to complete the previous lesson or did not save the data,
+then you can create it now.
+
+```{r, purl = FALSE, eval = FALSE}
+## Not run, but can be used to load in data from previous lesson!
+interviews_plotting <- interviews %>%
+  ## pivot wider by items_owned
+  separate_rows(items_owned, sep = ";") %>%
+  ## if there were no items listed, changing NA to no_listed_items
+  replace_na(list(items_owned = "no_listed_items")) %>%
+  mutate(items_owned_logical = TRUE) %>%
+  pivot_wider(names_from = items_owned, 
+              values_from = items_owned_logical, 
+              values_fill = list(items_owned_logical = FALSE)) %>%
+  ## pivot wider by months_lack_food
+  separate_rows(months_lack_food, sep = ";") %>%
+  mutate(months_lack_food_logical = TRUE) %>%
+  pivot_wider(names_from = months_lack_food, 
+              values_from = months_lack_food_logical, 
+              values_fill = list(months_lack_food_logical = FALSE)) %>%
+  ## add some summary columns
+  mutate(number_months_lack_food = rowSums(select(., Jan:May))) %>%
+  mutate(number_items = rowSums(select(., bicycle:car)))
+```
+
+
+First we will write a short introduction under a section-heading that we will call
+'Introduction'.
+
+### Insert table
+
+Next, we will create a table with the first 10 entries in the data frame.
+
+For that, we will need to create a 'code chunk'. The syntax of a code chunk is:
+
+![](../fig/rmd-code-chunk.png)
+
+That is, you place a chunk of R code between ```{r chunk_name} and ```. Naming a
+chunk is optional, but recommended. Each chunk name must be unique, and only contain
+numbers, `-`, and `_`.
+
+The keyboard shortcut for inserting a code chunk in RStudio is
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, or
+<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.
+
+Insert table with `knitr::kable`.
+
+### In-line R code
+
+Then we will use some in-line R code to talk about some of the descriptive statistics.
+To use in-line R-code, we can use the backticks again, but we also need to specify
+that we are using R-code, by including `r` after the first backtick: 
+
+This `r print('R-code')` is surrounded by meaningful text.
+
+By including in-text R-code to present descriptive statistics (or test statistics),
+it will be run each time we knit the document. Which means if, for whatever reason,
+our data have changed, the document will automatically update the descriptive statistics
+accordingly. Pretty useful for those of us who are prone to data entry errors!
+
+### Plots
+
+Next we will also include a plot, so our document is a little more colourful, and
+a little less boring.
+
+Exercise: Create a code chunk with code to output a plot.
+
+### Customising chunk output
+
+There are multiple options available to customise how the code-chunks are presented
+in the output document.
+
+| Option | Output |
+|---|---|
+| `eval` | `TRUE` or `FALSE`. Whether or not the code within the code chunk should be run. |
+| `echo` | `TRUE` or `FALSE`. Choose if you want to show your code chunk in the output document. `echo=TRUE` will show the code chunk. |
+| `include` | `TRUE` or `FALSE`. Choose if the output of a code chunk should be included in the document. `FALSE` means that your code will run, but will not show up in the document. |
+
+The options are entered in the code chunk after `chunk_name` and separated by commas ','
+e.g. `{r} chunk_name, eval=FALSE`.
+
+The default settings for your document are: `eval=TRUE`, `echo=TRUE`, `include=TRUE`.
+These can be modified with `knitr::opts_chunk$set()`, but we will not focus on that here.
+
+Exercise: play around with the options
+
+## Other cool things R Markdown can do
+
+Websites with the **blogdown** package
+
+Books with the **bookdown** package
+
+Slides with the **xaringan** package
+
+Article templates with the **rticles** package
+
+## Resources
+
+* [Knitr in a knutshell tutorial](http://kbroman.org/knitr_knutshell)
+* [Dynamic Documents with R and knitr](http://www.amazon.com/exec/obidos/ASIN/1482203537/7210-20) (book)
+* [R Markdown documentation](http://rmarkdown.rstudio.com)
+* [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+* [Getting started with R Markdown](https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/)
+* [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) (book by Rstudio team)
+* [Reproducible Reporting](https://www.rstudio.com/resources/webinars/reproducible-reporting/)
+* [The Ecosystem of R Markdown](https://www.rstudio.com/resources/webinars/the-ecosystem-of-r-markdown/)
+* [Introducing Bookdown](https://www.rstudio.com/resources/webinars/introducing-bookdown/)
