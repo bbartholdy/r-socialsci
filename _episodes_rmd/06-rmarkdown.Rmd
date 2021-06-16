@@ -12,7 +12,7 @@ objectives:
 - Customise code chunks to control formatting
 - Use code chunks and inline code to create dynamic documents
 - Understand how R Markdown can be used to create reproducible reports
-keypoints: Rmd is a popular ... for creating reproducible reports, articles, and theses.
+keypoints: R Markdown is a popular language for creating reproducible reports, articles, and theses.
 source: Rmd
 questions:
 - What is R Markdown?
@@ -28,14 +28,14 @@ source("../bin/download_data.R")
 
 ## R Markdown
 
-R Markdown is a flexible type of document that allows you to combine code and
-text into a single document...
+R Markdown is a flexible type of document that allows you to seamlessly combine 
+R-code and text in a single document. These documents can be readily ... , including
+PDF (.pdf), Word (.docx), and HTML (.html).
 
 The benefit of a well-prepared R Markdown document is full reproducibility. This
 also means that, if you notice a data transcription error, or you are able to add 
 more data to your analysis, you will be able to recompile the report with the new
-data, without making any changes in the actual document (unless your interpretations
-change drastically).
+data, without making any changes in the actual document.
 
 It relies on the **rmarkdown** package.
 
@@ -51,7 +51,8 @@ how to start from a blank document.
 
 ## Basic components of R Markdown
 
-To create a basic output, a YAML (Yet Another Markup Language) header is needed.
+To control the output, a YAML (originally, Yet Another Markup Language; now, YAML Ain't Markup Language)
+header is needed.
 
 ```
 ---
@@ -64,7 +65,7 @@ output: html_document
 
 The only necessary field is the `output:`, which specifies the type of output you
 want. The rest can be deleted if you don't need them. To start the document, 
-we will begin writing below the YAML header (after the second `---`).
+we will begin writing below the YAML header (i.e. after the second `---`).
 
 ## Markdown syntax
 
@@ -130,27 +131,116 @@ And nested items by tab-indenting:
 - code-type font with backticks
 ```
 
+Now we can Knit the document into HTML by clicking the 'Knit' button in the top
+of the Source pane (top left), or use the keyboard shortcut
+<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Windows and Linux, or 
+<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Mac.
+
 For more Markdown syntax see [here](https://www.markdownguide.org/basic-syntax).
 
 The new visual Markdown editor in RStudio (from version 1.4) may make this easier
 for you...
 
-## Creating an R Markdown document
+> ## Challenge 1
+>
+> Create a new blank R Markdown document and write a bit of Markdown 
+>(some sections, some italicized text, and an itemized list).
+>
+> Convert the document to a webpage.
+> > ## Solution to Challenge 1
+> >
+> > In RStudio, select File > New file > R Markdown... 
+> > 
+> > Add the following:
+> > 
+> > ```
+> > # Introduction
+> > 
+> > ## Background on Data
+> > 
+> > This report uses the *SAFI* dataset, which has columns that include:
+> > 
+> > * village
+> > * interview_date
+> > * no_members
+> > * years_liv
+> > * respondent_wall_type
+> > * rooms
+> > 
+> > ## Background on Methods
+> > 
+> > ```
+> > 
+> > Then click the 'Knit' button on the toolbar to generate an html document.
+> {: .solution}
+{: .challenge}
+
+## Writing an R Markdown report
 
 We will be writing a report based on our previous data wrangling and visualisation,
-so we will need the data we worked with previously.
+which means we need to make sure **tidyverse** is loaded. It is not enough to
+load **tidyverse** from the console, we will need to load it within our Rmd
+document. For that, we will need to create a 'code chunk' at the top of our document
+(under the YAML header). The syntax of a code chunk is:
 
-That means we need to make sure **tidyverse** is loaded:
+<pre>
+&#96;&#96;&#96;{r chunk_name}
+R code here
+&#96;&#96;&#96;
+</pre>
+
+That is, you place a chunk of R code between ```{r chunk_name} and ```. Naming a
+chunk is optional, but recommended. Each chunk name must be unique, and only contain
+numbers, `-`, and `_`.
+
+The keyboard shortcut for inserting a code chunk in RStudio is
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, or
+<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.
+
+, which we will
+call 'setup'. We don't won't to show the chunk or the output of the chunk, so
+we use: `{r setup, include=FALSE}`.
 
 ```{r load-package, message=FALSE, purl=FALSE}
 library(tidyverse)
 ```
 
-And, if not still in the workspace, load the data we saved in the previous lesson:
+We will also need the data we worked with earlier. If not still in the workspace,
+load the data we saved in the previous lesson:
 
 ```{r load-data, message=FALSE, purl=FALSE}
-interviews_plotting <- read_csv("data_output/interviews_plotting.csv")
+interviews <- read_csv("data/SAFI_clean.csv", na = "NULL")
 ```
+
+First we will write a short introduction under a section-heading that we will call
+'Introduction'.
+
+### Insert table
+
+Next, we will create a table with the first 10 entries and first 6 columns in the
+interviews data frame.
+
+
+
+<!-- Insert table with caption using `knitr::kable`. -->
+
+### In-line R code
+
+Then we will use some in-line R code to talk about some of the descriptive statistics.
+To use in-line R-code, we can use the backticks again, but we also need to specify
+that we are using R-code, by including `r` after the first backtick: 
+
+This `r print('R-code')` is surrounded by meaningful text.
+
+By including in-text R-code to present descriptive statistics (or test statistics),
+it will be run each time we knit the document. Which means if, for whatever reason,
+our data have changed, the document will automatically update the descriptive statistics
+accordingly. Pretty useful for those of us who are prone to data entry errors!
+
+### Plots
+
+Next we will also include a plot, so our document is a little more colourful, and
+a little less boring.
 
 If you were unable to complete the previous lesson or did not save the data,
 then you can create it now.
@@ -177,45 +267,6 @@ interviews_plotting <- interviews %>%
   mutate(number_items = rowSums(select(., bicycle:car)))
 ```
 
-
-First we will write a short introduction under a section-heading that we will call
-'Introduction'.
-
-### Insert table
-
-Next, we will create a table with the first 10 entries in the data frame.
-
-For that, we will need to create a 'code chunk'. The syntax of a code chunk is:
-
-![](../fig/rmd-code-chunk.png)
-
-That is, you place a chunk of R code between ```{r chunk_name} and ```. Naming a
-chunk is optional, but recommended. Each chunk name must be unique, and only contain
-numbers, `-`, and `_`.
-
-The keyboard shortcut for inserting a code chunk in RStudio is
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, or
-<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.
-
-<!-- Insert table with caption using `knitr::kable`. -->
-
-### In-line R code
-
-Then we will use some in-line R code to talk about some of the descriptive statistics.
-To use in-line R-code, we can use the backticks again, but we also need to specify
-that we are using R-code, by including `r` after the first backtick: 
-
-This `r print('R-code')` is surrounded by meaningful text.
-
-By including in-text R-code to present descriptive statistics (or test statistics),
-it will be run each time we knit the document. Which means if, for whatever reason,
-our data have changed, the document will automatically update the descriptive statistics
-accordingly. Pretty useful for those of us who are prone to data entry errors!
-
-### Plots
-
-Next we will also include a plot, so our document is a little more colourful, and
-a little less boring.
 
 <!-- Exercise: Create a code chunk with code to output a plot. -->
 
