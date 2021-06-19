@@ -187,17 +187,17 @@ R code here
 &#96;&#96;&#96;
 </pre>
 
-That is, you place a chunk of R code between ```{r chunk_name} and ```. Naming a
-chunk is optional, but recommended. Each chunk name must be unique, and only contain
-numbers, `-`, and `_`.
+That is, between ```{r chunk_name} and ```, you place the R code you want to run.
+Naming a chunk is optional, but recommended. Each chunk name must be unique, and
+only contain numbers, `-`, and `_`.
 
 The keyboard shortcut for inserting a code chunk in RStudio is
 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, or
 <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.
 
-, which we will
-call 'setup'. We don't won't to show the chunk or the output of the chunk, so
-we use: `{r setup, include=FALSE}`.
+To load **tidyverse**, we will insert a chunk and call it 'setup'. Since we don't
+won't to show the chunk or the output of the chunk, so
+we use: `{r setup, include=FALSE}`. More on chunk options later.
 
 
 ~~~
@@ -222,6 +222,41 @@ First we will write a short introduction under a section-heading that we will ca
 Next, we will create a table with the first 10 entries and first 6 columns in the
 interviews data frame.
 
+
+### Customising chunk output
+
+There are multiple options available to customise how the code-chunks are presented
+in the output document.
+
+| Option | Output |
+|---|---|
+| `eval=<TRUE,FALSE>` | Whether or not the code within the code chunk should be run. |
+| `echo=<TRUE,FALSE>` | Choose if you want to show your code chunk in the output document. `echo=TRUE` will show the code chunk. |
+| `include=<TRUE,FALSE>` | Choose if the output of a code chunk should be included in the document. `FALSE` means that your code will run, but will not show up in the document. |
+
+The options are entered in the code chunk after `chunk_name` and separated by
+commas, e.g. `{r} chunk_name, eval=FALSE, echo=TRUE`.
+
+The default settings are: `eval=TRUE`, `echo=TRUE`, `include=TRUE`.
+The default settings can be modified with `knitr::opts_chunk$set()`.
+
+> ## Challenge 2
+>
+> Play around with the different options in the chunk with the code for the table, 
+> and re-Knit to see what each option does to the output.
+>
+> What happens if you use `eval=FALSE` and `echo=FALSE`? What is the difference between
+> this and `include=FALSE`? 
+> > ## Solution to Challenge 2
+> > 
+> > Create a chunk with `{r} eval=FALSE, echo=FALSE`, then create another chunk
+> > with `{r} include=FALSE` to compare.
+> > `eval=FALSE` and `echo=FALSE` will neither run the code in the chunk, nor show 
+> > the code in the knitted document. The code chunk essentially doesn't exist in
+> > the knitted document, 
+> > whereas `include=FALSE` will run the code and store the output for later use.
+> {: .solution}
+{: .challenge}
 
 
 <!-- Insert table with caption using `knitr::kable`. -->
@@ -273,25 +308,6 @@ interviews_plotting <- interviews %>%
 
 
 <!-- Exercise: Create a code chunk with code to output a plot. -->
-
-### Customising chunk output
-
-There are multiple options available to customise how the code-chunks are presented
-in the output document.
-
-| Option | Output |
-|---|---|
-| `eval=<TRUE,FALSE>` | Whether or not the code within the code chunk should be run. |
-| `echo=<TRUE,FALSE>` | Choose if you want to show your code chunk in the output document. `echo=TRUE` will show the code chunk. |
-| `include=<TRUE,FALSE>` | Choose if the output of a code chunk should be included in the document. `FALSE` means that your code will run, but will not show up in the document. |
-
-The options are entered in the code chunk after `chunk_name` and separated by commas ','
-e.g. `{r} chunk_name, eval=FALSE`.
-
-The default settings for your document are: `eval=TRUE`, `echo=TRUE`, `include=TRUE`.
-These can be modified with `knitr::opts_chunk$set()`, but we will not focus on that here.
-
-<!-- Exercise: play around with the options -->
 
 ## Other cool things R Markdown can do
 

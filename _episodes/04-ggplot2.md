@@ -49,7 +49,7 @@ interviews_plotting <- read_csv("data_output/interviews_plotting.csv")
 
 ~~~
 
-── Column specification ────────────────────────────────────────────────────────
+── Column specification ──────────────────────────────────────────────────────────────────────────────
 cols(
   .default = col_logical(),
   key_ID = col_double(),
