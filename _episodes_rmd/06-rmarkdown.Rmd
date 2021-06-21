@@ -32,12 +32,12 @@ R Markdown is a flexible type of document that allows you to seamlessly combine
 R-code and text in a single document. These documents can be readily ... , including
 PDF (.pdf), Word (.docx), and HTML (.html).
 
+![https://github.com/allisonhorst](../fig/rmarkdown_wizards.png)
+
 The benefit of a well-prepared R Markdown document is full reproducibility. This
 also means that, if you notice a data transcription error, or you are able to add 
 more data to your analysis, you will be able to recompile the report with the new
 data, without making any changes in the actual document.
-
-It relies on the **rmarkdown** package.
 
 ## Creating an R Markdown file
 
@@ -136,6 +136,8 @@ of the Source pane (top left), or use the keyboard shortcut
 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Windows and Linux, or 
 <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Mac.
 
+![The 'knitting' process](../fig/rmd-rmd_to_html.png)
+
 For more Markdown syntax see [here](https://www.markdownguide.org/basic-syntax).
 
 The new visual Markdown editor in RStudio (from version 1.4) may make this easier
@@ -160,12 +162,12 @@ for you...
 > > 
 > > This report uses the *SAFI* dataset, which has columns that include:
 > > 
-> > * village
-> > * interview_date
-> > * no_members
-> > * years_liv
-> > * respondent_wall_type
-> > * rooms
+> > - village
+> > - interview_date
+> > - no_members
+> > - years_liv
+> > - respondent_wall_type
+> > - rooms
 > > 
 > > ## Background on Methods
 > > 
@@ -198,28 +200,35 @@ The keyboard shortcut for inserting a code chunk in RStudio is
 <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.
 
 To load **tidyverse**, we will insert a chunk and call it 'setup'. Since we don't
-won't to show the chunk or the output of the chunk, so
-we use: `{r setup, include=FALSE}`. More on chunk options later.
+won't to show the chunk or the output of the chunk, we use: 
+`{r setup, include=FALSE}`. We will review more details about the chunk options
+later.
 
 ```{r load-package, message=FALSE, purl=FALSE}
 library(tidyverse)
 ```
 
-We will also need the data we worked with earlier. If not still in the workspace,
-load the data we saved in the previous lesson:
+We will also need the data we worked with earlier. If they are not still in the
+workspace (check your Environment Pane), load the data we saved in the previous
+lesson by adding the following to the 'setup' chunk:
 
 ```{r load-data, message=FALSE, purl=FALSE}
+library(tidyverse)
 interviews <- read_csv("data/SAFI_clean.csv", na = "NULL")
 ```
 
-First we will write a short introduction under a section-heading that we will call
-'Introduction'.
-
 ### Insert table
 
-Next, we will create a table with the first 10 entries and first 6 columns in the
-interviews data frame.
+Next, we will create a table with the first 10 entries and first 4 columns in the
+interviews data frame. We can do this using the following code in a new chunk; 
+let's call it 'interview-tbl_1', or you can come up with something more creative
+(just remember to stick to the naming rules).
 
+```{r interview-tbl_1, message=FALSE, purl=FALSE}
+interviews %>%
+  select(1:4) %>%
+  slice_head(n = 10) # only show the first 10 rows
+```
 
 ### Customising chunk output
 
@@ -233,10 +242,17 @@ in the output document.
 | `include=<TRUE,FALSE>` | Choose if the output of a code chunk should be included in the document. `FALSE` means that your code will run, but will not show up in the document. |
 
 The options are entered in the code chunk after `chunk_name` and separated by
-commas, e.g. `{r} chunk_name, eval=FALSE, echo=TRUE`.
+commas, e.g. `{r chunk_name, eval=FALSE, echo=TRUE}`.
 
-The default settings are: `eval=TRUE`, `echo=TRUE`, `include=TRUE`.
-The default settings can be modified with `knitr::opts_chunk$set()`.
+> ## Notes
+>
+> - The default settings are: `eval=TRUE`, `echo=TRUE`, `include=TRUE`.
+> - The default settings can be modified with `knitr::opts_chunk$set()`,
+> - Entering `knitr::opts_chunk$set(echo = FALSE)` will change the default of
+> value of `echo` to `TRUE` for all chunks in the document.
+
+{: .callout}
+
 
 > ## Challenge 2
 >
@@ -247,8 +263,8 @@ The default settings can be modified with `knitr::opts_chunk$set()`.
 > this and `include=FALSE`? 
 > > ## Solution to Challenge 2
 > > 
-> > Create a chunk with `{r} eval=FALSE, echo=FALSE`, then create another chunk
-> > with `{r} include=FALSE` to compare.
+> > Create a chunk with `{r eval=FALSE, echo=FALSE}`, then create another chunk
+> > with `{r include=FALSE}` to compare.
 > > `eval=FALSE` and `echo=FALSE` will neither run the code in the chunk, nor show 
 > > the code in the knitted document. The code chunk essentially doesn't exist in
 > > the knitted document, 
@@ -261,26 +277,73 @@ The default settings can be modified with `knitr::opts_chunk$set()`.
 
 ### In-line R code
 
-Then we will use some in-line R code to talk about some of the descriptive statistics.
-To use in-line R-code, we can use the backticks again, but we also need to specify
-that we are using R-code, by including `r` after the first backtick: 
+Now we will use some in-line R code to present some descriptive statistics.
+To use in-line R-code, we use the backticks that we also used in the Markdown
+section, but now we need to specify that we are using R-code. This is done by
+including `r` after the first backtick. For example, today's date is `r Sys.Date()`.
+Well, at least that was the date this document was last knitted. The in-line code 
+used to do this is: 
 
-This `r print('R-code')` is surrounded by meaningful text.
+<pre>
+&#96;r Sys.Date()&#96;
+</pre>
 
 By including in-text R-code to present descriptive statistics (or test statistics),
 it will be run each time we knit the document. Which means if, for whatever reason,
-our data have changed, the document will automatically update the descriptive statistics
-accordingly. Pretty useful for those of us who are prone to data entry errors!
+our data have changed, the document will automatically update the descriptive
+statistics accordingly. Pretty useful for those of us who are prone to data entry
+errors!
+
+The best way to use in-line R code is to minimise the amount of in-line code by
+preparing the output in code chunks. Let's say we're interested in presenting the
+average household size in each village. We can modify some code from a
+previous episode:
+
+```{r in-line-code, purl=FALSE}
+mean_household <- interviews %>%
+    group_by(village) %>%
+    summarize(mean_no_membrs = mean(no_membrs))
+
+# and separate the villages
+mean_chirodzo <- mean_household %>%
+  filter(village == "Chirodzo")
+
+mean_god <- mean_household %>%
+  filter(village == "God")
+
+mean_ruaca <- mean_household %>%
+  filter(village == "Ruaca")
+```
+
+Now we can make an informative statement on the means of each village, and include
+the mean values as in-line R-code, for example: 
+
+The average household size in the village of Chirodzo is 
+`r mean_chirodzo$mean_no_membrs`. 
+
+When, you knit your document, the code will be executed and the output will only
+show the value produced by the code. In the source document you won't see the
+value, only the code used to produce it:
+
+<pre>
+&#96;r mean_chirodzo$mean_no_members&#96;
+</pre>
+
+Because we are using in-line R code instead of the actual values, we have created
+a dynamic document that will automatically update if we make changes to the original
+dataset.
+
+<!-- ordered example naming the villages with largest average household in decreasing order -->
 
 ### Plots
 
-Next we will also include a plot, so our document is a little more colourful, and
-a little less boring.
+Next we will also include a plot, so our document is a little more colourful and
+a little less boring. We will use the same data as we did in the previous episode.
 
 If you were unable to complete the previous lesson or did not save the data,
 then you can create it now.
 
-```{r, purl = FALSE, eval = FALSE}
+```{r interview-plotting-data, purl = FALSE, eval = TRUE}
 ## Not run, but can be used to load in data from previous lesson!
 interviews_plotting <- interviews %>%
   ## pivot wider by items_owned
@@ -302,8 +365,32 @@ interviews_plotting <- interviews %>%
   mutate(number_items = rowSums(select(., bicycle:car)))
 ```
 
+> ## Challenge 3
+>
+> Create a new code chunk for the plot, and copy the code from any of the plots 
+> we created in the previous episode to produce a plot in the chunk. I recommend
+> one of the colourful plots.
+>
+> > ## Solution to Challenge 3
+> > ```{r my-plot, answer=TRUE, purl=FALSE}
+> > interviews_plotting %>%
+> >   ggplot(aes(x = respondent_wall_type)) +
+> >   geom_bar(aes(fill = village))
+> > ```
+> {: .solution}
+{: .challenge}
 
-<!-- Exercise: Create a code chunk with code to output a plot. -->
+We can also create a caption with the chunk option `fig.cap="caption here."`.
+For example:
+
+```{r my-fancy-plot, purl=FALSE, fig.cap="I made this plot while attending an awesome datacarpentries workshop where I learned a ton of cool stuff!"}
+interviews_plotting %>%
+  ggplot(aes(x = respondent_wall_type)) +
+  geom_bar(aes(fill = village)) +
+  scale_fill_viridis_d() # add colourblind-friendly palette
+```
+
+...or something like that.
 
 ## Other cool things R Markdown can do
 
