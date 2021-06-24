@@ -69,7 +69,15 @@ we will begin writing below the YAML header (i.e. after the second `---`).
 
 ## Markdown syntax
 
-Markdown is ...
+Markdown is a popular markup language that allows you to add formatting elements
+to text, such as **bold**, *italics*, and `code`. The formatting will not be
+immediately visible in a markdown (.md) document, like in Word, rather you add
+Markdown syntax to the text, which can then be converted to various other file 
+that can translate the Markdown syntax. Markdown is useful because it is 
+lightweight, flexible, and platform independent.
+
+Some platforms provide a real time preview of the formatting, like RStudio's 
+visual markdown editor (available from version 1.4).
 
 First, let's create a header:
 
@@ -337,7 +345,7 @@ dataset.
 
 ### Plots
 
-Next we will also include a plot, so our document is a little more colourful and
+Finally, we will also include a plot, so our document is a little more colourful and
 a little less boring. We will use the same data as we did in the previous episode.
 
 If you were unable to complete the previous lesson or did not save the data,
