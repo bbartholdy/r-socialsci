@@ -1,7 +1,7 @@
 ---
 title: "Getting started with R Markdown"
-teaching: 30
-exercises: 15
+teaching: 25
+exercises: 20
 output: 
   html_document:
     df_print: paged
@@ -10,7 +10,7 @@ objectives:
 - Create a YAML header to control output
 - Understand basic syntax of (R)Markdown
 - Customise code chunks to control formatting
-- Use code chunks and inline code to create dynamic documents
+- Use code chunks and in-line code to create dynamic documents
 - Understand how R Markdown can be used to create reproducible reports
 keypoints: R Markdown is a popular language for creating reproducible reports, articles, and theses.
 source: Rmd
@@ -29,7 +29,8 @@ source("../bin/download_data.R")
 ## R Markdown
 
 R Markdown is a flexible type of document that allows you to seamlessly combine 
-R-code and text in a single document. These documents can be readily ... , including
+executable R code, and its output, with text in a single document. These documents
+can be readily converted to multiple static and dynamic output formats, including
 PDF (.pdf), Word (.docx), and HTML (.html).
 
 ![https://github.com/allisonhorst](../fig/rmarkdown_wizards.png)
@@ -148,16 +149,13 @@ of the Source pane (top left), or use the keyboard shortcut
 
 For more Markdown syntax see [here](https://www.markdownguide.org/basic-syntax).
 
-The new visual Markdown editor in RStudio (from version 1.4) may make this easier
-for you...
-
-> ## Challenge 1
+> ## Exercise
 >
 > Create a new blank R Markdown document and write a bit of Markdown 
->(some sections, some italicized text, and an itemized list).
+> (some sections, some italicized text, and an itemized list).
 >
 > Convert the document to a webpage.
-> > ## Solution to Challenge 1
+> > ## Solution
 > >
 > > In RStudio, select File > New file > R Markdown... 
 > > 
@@ -181,7 +179,7 @@ for you...
 > > 
 > > ```
 > > 
-> > Then click the 'Knit' button on the toolbar to generate an html document.
+> > Then click the 'Knit' button on the toolbar to generate an HTML document.
 > {: .solution}
 {: .challenge}
 
@@ -201,23 +199,23 @@ R code here
 
 That is, between ```{r chunk_name} and ```, you place the R code you want to run.
 Naming a chunk is optional, but recommended. Each chunk name must be unique, and
-only contain numbers, `-`, and `_`.
+only contain alphanumeric characters, `-`, and `_`.
 
 The keyboard shortcut for inserting a code chunk in RStudio is
 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, or
 <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.
 
 To load **tidyverse**, we will insert a chunk and call it 'setup'. Since we don't
-won't to show the chunk or the output of the chunk, we use: 
+want to show the chunk or the output of the chunk, we use: 
 `{r setup, include=FALSE}`. We will review more details about the chunk options
 later.
 
-```{r load-package, message=FALSE, purl=FALSE}
+```{r load-tidyverse, message=FALSE, purl=FALSE}
 library(tidyverse)
 ```
 
 We will also need the data we worked with earlier. If they are not still in the
-workspace (check your Environment Pane), load the data we saved in the previous
+workspace (check your Environment pane), load the data we saved in the previous
 lesson by adding the following to the 'setup' chunk:
 
 ```{r load-data, message=FALSE, purl=FALSE}
@@ -262,14 +260,14 @@ commas, e.g. `{r chunk_name, eval=FALSE, echo=TRUE}`.
 {: .callout}
 
 
-> ## Challenge 2
+> ## Exercise
 >
 > Play around with the different options in the chunk with the code for the table, 
 > and re-Knit to see what each option does to the output.
 >
 > What happens if you use `eval=FALSE` and `echo=FALSE`? What is the difference between
 > this and `include=FALSE`? 
-> > ## Solution to Challenge 2
+> > ## Solution to Exercise
 > > 
 > > Create a chunk with `{r eval=FALSE, echo=FALSE}`, then create another chunk
 > > with `{r include=FALSE}` to compare.
@@ -279,7 +277,6 @@ commas, e.g. `{r chunk_name, eval=FALSE, echo=TRUE}`.
 > > whereas `include=FALSE` will run the code and store the output for later use.
 > {: .solution}
 {: .challenge}
-
 
 <!-- Insert table with caption using `knitr::kable`. -->
 
@@ -315,19 +312,13 @@ mean_household <- interviews %>%
 # and separate the villages
 mean_chirodzo <- mean_household %>%
   filter(village == "Chirodzo")
-
-mean_god <- mean_household %>%
-  filter(village == "God")
-
-mean_ruaca <- mean_household %>%
-  filter(village == "Ruaca")
 ```
 
 Now we can make an informative statement on the means of each village, and include
 the mean values as in-line R-code, for example: 
 
 The average household size in the village of Chirodzo is 
-`r mean_chirodzo$mean_no_membrs`. 
+`r mean_chirodzo$mean_no_membrs`.
 
 When, you knit your document, the code will be executed and the output will only
 show the value produced by the code. In the source document you won't see the
@@ -340,6 +331,21 @@ value, only the code used to produce it:
 Because we are using in-line R code instead of the actual values, we have created
 a dynamic document that will automatically update if we make changes to the original
 dataset.
+
+> ## Exercise
+>
+> Create a new code chunk for the plot, and copy the code from any of the plots 
+> we created in the previous episode to produce a plot in the chunk. I recommend
+> one of the colourful plots.
+>
+> > ## Solution to Exercise
+> > ```{r my-plot, answer=TRUE, purl=FALSE}
+> > interviews_plotting %>%
+> >   ggplot(aes(x = respondent_wall_type)) +
+> >   geom_bar(aes(fill = village))
+> > ```
+> {: .solution}
+{: .challenge}
 
 <!-- ordered example naming the villages with largest average household in decreasing order -->
 
@@ -373,14 +379,14 @@ interviews_plotting <- interviews %>%
   mutate(number_items = rowSums(select(., bicycle:car)))
 ```
 
-> ## Challenge 3
+> ## Exercise
 >
 > Create a new code chunk for the plot, and copy the code from any of the plots 
 > we created in the previous episode to produce a plot in the chunk. I recommend
 > one of the colourful plots.
 >
-> > ## Solution to Challenge 3
-> > ```{r my-plot, answer=TRUE, purl=FALSE}
+> > ## Solution to Exercise
+> > ```{r my-fancy-plot, answer=TRUE, purl=FALSE}
 > > interviews_plotting %>%
 > >   ggplot(aes(x = respondent_wall_type)) +
 > >   geom_bar(aes(fill = village))
@@ -391,7 +397,7 @@ interviews_plotting <- interviews %>%
 We can also create a caption with the chunk option `fig.cap="caption here."`.
 For example:
 
-```{r my-fancy-plot, purl=FALSE, fig.cap="I made this plot while attending an awesome datacarpentries workshop where I learned a ton of cool stuff!"}
+```{r caption-plot, purl=FALSE, fig.cap="I made this plot while attending an awesome datacarpentries workshop where I learned a ton of cool stuff!"}
 interviews_plotting %>%
   ggplot(aes(x = respondent_wall_type)) +
   geom_bar(aes(fill = village)) +
