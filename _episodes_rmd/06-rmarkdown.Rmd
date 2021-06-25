@@ -181,7 +181,7 @@ for you...
 
 We will be writing a report based on our previous data wrangling and visualisation,
 which means we need to make sure **tidyverse** is loaded. It is not enough to
-load **tidyverse** from the console, we will need to load it within our Rmd
+load **tidyverse** from the console, we will need to load it within our R Markdown
 document. For that, we will need to create a 'code chunk' at the top of our document
 (under the YAML header). The syntax of a code chunk is:
 
@@ -294,10 +294,10 @@ our data have changed, the document will automatically update the descriptive
 statistics accordingly. Pretty useful for those of us who are prone to data entry
 errors!
 
-The best way to use in-line R code is to minimise the amount of in-line code by
-preparing the output in code chunks. Let's say we're interested in presenting the
-average household size in each village. We can modify some code from a
-previous episode:
+The best way to use in-line R code, is to minimise the amount of code you need
+to produce the in-line output by preparing the output in code chunks. Let's say
+we're interested in presenting the average household size in each village. 
+We can modify some code from a previous episode:
 
 ```{r in-line-code, purl=FALSE}
 mean_household <- interviews %>%
