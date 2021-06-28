@@ -1,7 +1,7 @@
 ---
 title: "Getting started with R Markdown"
-teaching: 25
-exercises: 20
+teaching: 30
+exercises: 15
 output: 
   html_document:
     df_print: paged
@@ -17,7 +17,7 @@ source: Rmd
 questions:
 - What is R Markdown?
 - How can I integrate my R code with text and plots?
-- How can I convert .Rmd files to .html, .pdf, and .docx?
+- How can I convert .Rmd files to .html?
 ---
 
 ```{r setup, include=FALSE}
@@ -37,8 +37,8 @@ PDF (.pdf), Word (.docx), and HTML (.html).
 
 The benefit of a well-prepared R Markdown document is full reproducibility. This
 also means that, if you notice a data transcription error, or you are able to add 
-more data to your analysis, you will be able to recompile the report with the new
-data, without making any changes in the actual document.
+more data to your analysis, you will be able to recompile the report without making
+any changes in the actual document.
 
 ## Creating an R Markdown file
 
@@ -53,12 +53,12 @@ how to start from a blank document.
 ## Basic components of R Markdown
 
 To control the output, a YAML (originally, Yet Another Markup Language; now, YAML Ain't Markup Language)
-header is needed.
+header is needed:
 
 ```
 ---
 title: "My Awesome Report"
-author: "My Awesome Name"
+author: "Emmet Brickowski"
 date: ""
 output: html_document
 ---
@@ -94,9 +94,7 @@ Since we have already defined our title in the YAML header, we will use a sectio
 header.
 
 ```
-## A meaningful header
-
-Some meaningful text to go along with my meaningful header.
+## Introduction
 ```
 
 You can make things **bold** by surrounding the word with double asterisks, 
@@ -110,82 +108,66 @@ asterisks and underscores, **_really_**. Just be consistent...
 
 To create `code-type` font, surround the word with backticks.
 
-Now that we've learned a couple of things, it might be useful to create a list so
-we don't forget:
+Now that we've learned a couple of things, it might be useful to implement them:
 
 ```
-- bold with double-asterisks
-- italics with underscores
-- code-type font with backticks
+## Introduction
+
+This report uses the **tidyverse** package along with the *SAFI* dataset, 
+which has columns that include:
+```
+Then we can create a list for the variables:
+
+```
+- village
+- interview_date
+- no_members
+- years_liv
+- respondent_wall_type
+- rooms
 ```
 
 You can also create an ordered list using numbers:
 
 ```
-1. bold with double-asterisks
-2. italics with underscores
-3. code-type font with backticks
+1. village
+2. interview_date
+3. no_members
+4. years_liv
+5. respondent_wall_type
+6. rooms
 ```
 
 And nested items by tab-indenting:
 
 ```
-- bold with double-asterisks
-  + or double-underscores
-- italics with underscores
-  + or double-asterisks
-- bold and italics with triple-asterisks
-  + or triple-underscores
-    - or a combination of both
-- code-type font with backticks
+- village
+  + Name of village
+- interview_date
+  + Date of interview
+- no_members
+- years_liv
+  + How many years respondent has lived in village
+    * or neighbouring village
+- respondent_wall_type
+- rooms
 ```
+
+For more Markdown syntax see [here](https://www.markdownguide.org/basic-syntax).
 
 Now we can Knit the document into HTML by clicking the 'Knit' button in the top
 of the Source pane (top left), or use the keyboard shortcut
 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Windows and Linux, or 
 <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Mac.
 
-![The 'knitting' process](../fig/rmd-rmd_to_html.png)
+![The 'knitting' process: First, R Markdown is converted to Markdown, which is then converted (via pandoc) to .html, .pdf, .docx, etc.](../fig/rmd-rmd_to_html.png)
 
-For more Markdown syntax see [here](https://www.markdownguide.org/basic-syntax).
+To continue working on the document, you can close the HTML window.
 
-> ## Exercise
->
-> Create a new blank R Markdown document and write a bit of Markdown 
-> (some sections, some italicized text, and an itemized list).
->
-> Convert the document to a webpage.
-> > ## Solution
-> >
-> > In RStudio, select File > New file > R Markdown... 
-> > 
-> > Add the following:
-> > 
-> > ```
-> > # Introduction
-> > 
-> > ## Background on Data
-> > 
-> > This report uses the *SAFI* dataset, which has columns that include:
-> > 
-> > - village
-> > - interview_date
-> > - no_members
-> > - years_liv
-> > - respondent_wall_type
-> > - rooms
-> > 
-> > ## Background on Methods
-> > 
-> > ```
-> > 
-> > Then click the 'Knit' button on the toolbar to generate an HTML document.
-> {: .solution}
-{: .challenge}
 
 ## Writing an R Markdown report
 
-We will be writing a report based on our previous data wrangling and visualisation,
+Now we will add some R code from our previous data wrangling and visualisation,
 which means we need to make sure **tidyverse** is loaded. It is not enough to
 load **tidyverse** from the console, we will need to load it within our R Markdown
 document. For that, we will need to create a 'code chunk' at the top of our document
@@ -194,10 +176,10 @@ document. For that, we will need to create a 'code chunk' at the top of our docu
 <pre>
 &#96;&#96;&#96;{r chunk_name}
 R code here
-&#96;&#96;&#96;
-</pre>
+&#96;&#96;&#96;</pre>
 
-That is, between ```{r chunk_name} and ```, you place the R code you want to run.
+That is, between `&#96;&#96;&#96;{r chunk_name}` and `&#96;&#96;&#96;`, you place
+the R code you want to run.
 Naming a chunk is optional, but recommended. Each chunk name must be unique, and
 only contain alphanumeric characters, `-`, and `_`.
 
@@ -226,8 +208,8 @@ interviews <- read_csv("data/SAFI_clean.csv", na = "NULL")
 ### Insert table
 
 Next, we will create a table with the first 10 entries and first 4 columns in the
-interviews data frame. We can do this using the following code in a new chunk; 
-let's call it 'interview-tbl_1', or you can come up with something more creative
+interviews data frame. We can do this using the following code in a new chunk: 
+let's call it 'interview-tbl_1'. Or you can come up with something more creative
 (just remember to stick to the naming rules).
 
 ```{r interview-tbl_1, message=FALSE, purl=FALSE}
@@ -242,20 +224,23 @@ There are multiple options available to customise how the code-chunks are presen
 in the output document.
 
 | Option | Output |
-|---|---|
+|--------|--------|
 | `eval=<TRUE,FALSE>` | Whether or not the code within the code chunk should be run. |
 | `echo=<TRUE,FALSE>` | Choose if you want to show your code chunk in the output document. `echo=TRUE` will show the code chunk. |
 | `include=<TRUE,FALSE>` | Choose if the output of a code chunk should be included in the document. `FALSE` means that your code will run, but will not show up in the document. |
+| `warning=<TRUE,FALSE>` | Whether or not you want to display potential warning messages in your output document. |
+| `message=<TRUE,FALSE>` | Whether or not you want to display potential messages in your output document. |
+
 
 The options are entered in the code chunk after `chunk_name` and separated by
 commas, e.g. `{r chunk_name, eval=FALSE, echo=TRUE}`.
 
 > ## Notes
 >
-> - The default settings are: `eval=TRUE`, `echo=TRUE`, `include=TRUE`.
-> - The default settings can be modified with `knitr::opts_chunk$set()`,
+> - The default settings are for the above chunk options are all `TRUE`.
+> - The default settings can be modified per chunk, or with `knitr::opts_chunk$set()`,
 > - Entering `knitr::opts_chunk$set(echo = FALSE)` will change the default of
-> value of `echo` to `TRUE` for all chunks in the document.
+> value of `echo` to `FALSE` for all chunks in the document.
 
 {: .callout}
 
@@ -285,9 +270,14 @@ commas, e.g. `{r chunk_name, eval=FALSE, echo=TRUE}`.
 Now we will use some in-line R code to present some descriptive statistics.
 To use in-line R-code, we use the backticks that we also used in the Markdown
 section, but now we need to specify that we are using R-code. This is done by
-including `r` after the first backtick. For example, today's date is `r Sys.Date()`.
-Well, at least that was the date this document was last knitted. The in-line code 
-used to do this is: 
+including `r` after the first backtick. When you knit your document, the code will 
+be executed and only the output from the executed code will be shown, while in the 
+source document you won't see the output, only the code used to produce it. 
+
+For example, today's date is 
+`r Sys.Date()`.
+Well, at least that was the date this document was last knitted.  
+The in-line code used to do this is: 
 
 <pre>
 &#96;r Sys.Date()&#96;
@@ -318,36 +308,15 @@ Now we can make an informative statement on the means of each village, and inclu
 the mean values as in-line R-code, for example: 
 
 The average household size in the village of Chirodzo is 
-`r mean_chirodzo$mean_no_membrs`.
-
-When, you knit your document, the code will be executed and the output will only
-show the value produced by the code. In the source document you won't see the
-value, only the code used to produce it:
+`r round(mean_chirodzo$mean_no_membrs, 2)`.
 
 <pre>
-&#96;r mean_chirodzo$mean_no_members&#96;
+&#96;r round(mean_chirodzo$mean_no_members, 2)&#96;
 </pre>
 
 Because we are using in-line R code instead of the actual values, we have created
 a dynamic document that will automatically update if we make changes to the original
 dataset.
-
-> ## Exercise
->
-> Create a new code chunk for the plot, and copy the code from any of the plots 
-> we created in the previous episode to produce a plot in the chunk. I recommend
-> one of the colourful plots.
->
-> > ## Solution to Exercise
-> > ```{r my-plot, answer=TRUE, purl=FALSE}
-> > interviews_plotting %>%
-> >   ggplot(aes(x = respondent_wall_type)) +
-> >   geom_bar(aes(fill = village))
-> > ```
-> {: .solution}
-{: .challenge}
-
-<!-- ordered example naming the villages with largest average household in decreasing order -->
 
 ### Plots
 
@@ -394,10 +363,9 @@ interviews_plotting <- interviews %>%
 > {: .solution}
 {: .challenge}
 
-We can also create a caption with the chunk option `fig.cap="caption here."`.
-For example:
+We can also create a caption with the chunk option `fig.cap="caption here."`:
 
-```{r caption-plot, purl=FALSE, fig.cap="I made this plot while attending an awesome datacarpentries workshop where I learned a ton of cool stuff!"}
+```{r caption-plot, purl=FALSE, fig.cap="I made this plot while attending an awesome Data Carpentries workshop where I learned a ton of cool stuff!"}
 interviews_plotting %>%
   ggplot(aes(x = respondent_wall_type)) +
   geom_bar(aes(fill = village)) +
@@ -406,15 +374,32 @@ interviews_plotting %>%
 
 ...or something like that.
 
-## Other cool things R Markdown can do
+## Other output options
 
-Websites with the **blogdown** package
+You can also convert R Markdown to a PDF or a Word document. Click the little 
+triangle next to the 'Knit' button to get a drop-down menu. Or you could put 
+`pdf_document` or `word_document` in the initial header of the file. For example:
 
-Books with the **bookdown** package
+```
+---
+title: "My Awesome Report"
+author: "Emmet Brickowski"
+date: ""
+output: word_document
+---
+```
 
-Slides with the **xaringan** package
-
-Article templates with the **rticles** package
+> ## Tip: Creating PDF documents
+>
+> Creating .pdf documents may require installation of some extra software. The R 
+> package `tinytex` provides some tools to help make this process easier for R users.
+> With `tinytex` installed, run `tinytex::install_tinytex()` to install the required
+> software (you'll only need to do this once) and then when you knit to pdf `tinytex`
+> will automatically detect and install any additional LaTeX packages that are needed to 
+> produce the pdf document. Visit the [tinytex website](https://yihui.org/tinytex/) 
+> for more information.
+>
+{: .callout}
 
 ## Resources
 
