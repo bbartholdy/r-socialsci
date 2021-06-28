@@ -49,7 +49,7 @@ interviews_plotting <- read_csv("data_output/interviews_plotting.csv")
 
 ~~~
 
-── Column specification ──────────────────────────────────────────────────────────────────────────────────
+── Column specification ────────────────────────────────────────────────────────
 cols(
   .default = col_logical(),
   key_ID = col_double(),
@@ -459,6 +459,13 @@ hidden?
 > >   geom_jitter(alpha = 0.5, color = "tomato")
 > > ~~~
 > > {: .language-r}
+> > 
+> > 
+> > 
+> > ~~~
+> > Warning: Groups with fewer than two data points have been dropped.
+> > ~~~
+> > {: .warning}
 > > 
 > > <img src="../fig/rmd-04-violin-plot-1.png" title="plot of chunk violin-plot" alt="plot of chunk violin-plot" width="612" style="display: block; margin: auto;" />
 > {: .solution}

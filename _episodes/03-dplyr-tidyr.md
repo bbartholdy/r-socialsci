@@ -568,7 +568,7 @@ interviews %>%
 ~~~
 # A tibble: 3 x 2
   village  mean_no_membrs
-* <chr>             <dbl>
+  <chr>             <dbl>
 1 Chirodzo           7.08
 2 God                6.86
 3 Ruaca              7.57
@@ -821,7 +821,7 @@ interviews %>%
 ~~~
 # A tibble: 3 x 2
   village      n
-* <chr>    <int>
+  <chr>    <int>
 1 Chirodzo    39
 2 God         43
 3 Ruaca       49
@@ -870,7 +870,7 @@ interviews %>%
 > > ~~~
 > > # A tibble: 2 x 2
 > >   no_meals     n
-> > *    <dbl> <int>
+> >      <dbl> <int>
 > > 1        2    52
 > > 2        3    79
 > > ~~~
@@ -901,7 +901,7 @@ interviews %>%
 > > ~~~
 > > # A tibble: 3 x 5
 > >   village  mean_no_membrs min_no_membrs max_no_membrs     n
-> > * <chr>             <dbl>         <dbl>         <dbl> <int>
+> >   <chr>             <dbl>         <dbl>         <dbl> <int>
 > > 1 Chirodzo           7.08             2            12    39
 > > 2 God                6.86             3            15    43
 > > 3 Ruaca              7.57             2            19    49
@@ -1045,16 +1045,16 @@ interviews %>%
 # A tibble: 10 x 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1     60 Chirodzo 2016-11-16 00:00:00 uuid:85465caf-23e4-4283-bb72-a0ef30e30176
- 2    199 Chirodzo 2017-06-04 00:00:00 uuid:ffc83162-ff24-4a87-8709-eff17abc0b3b
- 3     49 Chirodzo 2016-11-16 00:00:00 uuid:2303ebc1-2b3c-475a-8916-b322ebf18440
- 4     34 Chirodzo 2016-11-17 00:00:00 uuid:14c78c45-a7cc-4b2a-b765-17c82b43feb4
- 5      9 Chirodzo 2016-11-16 00:00:00 uuid:846103d2-b1db-4055-b502-9cd510bb7b37
- 6     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
- 7     62 Chirodzo 2016-11-16 00:00:00 uuid:c6597ecc-cc2a-4c35-a6dc-e62c71b345d6
- 8     50 Chirodzo 2016-11-16 00:00:00 uuid:4267c33c-53a7-46d9-8bd6-b96f58a4f92c
- 9     63 Chirodzo 2016-11-16 00:00:00 uuid:86ed4328-7688-462f-aac7-d6518414526a
-10     64 Chirodzo 2016-11-16 00:00:00 uuid:28cfd718-bf62-4d90-8100-55fafbe45d06
+ 1     70 Chirodzo 2016-11-16 00:00:00 uuid:1feb0108-4599-4bf9-8a07-1f5e66a50a0a
+ 2     67 Chirodzo 2016-11-16 00:00:00 uuid:6c15d667-2860-47e3-a5e7-7f679271e419
+ 3     35 Chirodzo 2016-11-17 00:00:00 uuid:ff7496e7-984a-47d3-a8a1-13618b5683ce
+ 4     57 Chirodzo 2016-11-16 00:00:00 uuid:a7184e55-0615-492d-9835-8f44f3b03a71
+ 5     55 Chirodzo 2016-11-16 00:00:00 uuid:883c0433-9891-4121-bc63-744f082c1fa0
+ 6     44 Chirodzo 2016-11-17 00:00:00 uuid:f9fadf44-d040-4fca-86c1-2835f79c4952
+ 7     21 Chirodzo 2016-11-16 00:00:00 uuid:cc7f75c5-d13e-43f3-97e5-4f4c03cb4b12
+ 8     36 Chirodzo 2016-11-17 00:00:00 uuid:c90eade0-1148-4a12-8c0e-6387a36f45b1
+ 9     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
+10     60 Chirodzo 2016-11-16 00:00:00 uuid:85465caf-23e4-4283-bb72-a0ef30e30176
 ~~~
 {: .output}
 
@@ -1398,7 +1398,7 @@ interviews_items_owned %>%
 ~~~
 # A tibble: 3 x 2
   village  mean_items
-* <chr>         <dbl>
+  <chr>         <dbl>
 1 Chirodzo       4.62
 2 God            4.07
 3 Ruaca          5.63
@@ -1444,7 +1444,7 @@ interviews_items_owned %>%
 > > ~~~
 > > # A tibble: 3 x 2
 > >   memb_assoc mean_months
-> > * <chr>            <dbl>
+> >   <chr>            <dbl>
 > > 1 no                2   
 > > 2 yes               2.30
 > > 3 <NA>              2.82

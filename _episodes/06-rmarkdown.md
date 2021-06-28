@@ -173,11 +173,9 @@ document. For that, we will need to create a 'code chunk' at the top of our docu
 
 <pre>
 &#96;&#96;&#96;{r chunk_name}
-R code here
+Place the R code here that you want to run.
 &#96;&#96;&#96;</pre>
 
-That is, between `&#96;&#96;&#96;{r chunk_name}` and `&#96;&#96;&#96;`, you place
-the R code you want to run.
 Naming a chunk is optional, but recommended. Each chunk name must be unique, and
 only contain alphanumeric characters, `-`, and `_`.
 
@@ -186,7 +184,7 @@ The keyboard shortcut for inserting a code chunk in RStudio is
 <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.
 
 To load **tidyverse**, we will insert a chunk and call it 'setup'. Since we don't
-want to show the chunk or the output of the chunk, we use: 
+want to show the chunk or the output of the chunk, we use 
 `{r setup, include=FALSE}`. We will review more details about the chunk options
 later.
 
@@ -244,7 +242,8 @@ interviews %>%
 ### Customising chunk output
 
 There are multiple options available to customise how the code-chunks are presented
-in the output document.
+in the output document. The options are entered in the code chunk after `chunk_name`
+and separated by commas, e.g. `{r chunk_name, eval=FALSE, echo=TRUE}`.
 
 | Option | Output |
 |--------|--------|
@@ -254,9 +253,6 @@ in the output document.
 | `warning=<TRUE,FALSE>` | Whether or not you want to display potential warning messages in your output document. |
 | `message=<TRUE,FALSE>` | Whether or not you want to display potential messages in your output document. |
 
-
-The options are entered in the code chunk after `chunk_name` and separated by
-commas, e.g. `{r chunk_name, eval=FALSE, echo=TRUE}`.
 
 > ## Notes
 >
@@ -297,14 +293,9 @@ including `r` after the first backtick. When you knit your document, the code wi
 be executed and only the output from the executed code will be shown, while in the 
 source document you won't see the output, only the code used to produce it. 
 
-For example, today's date is 
-2021-06-28.
-Well, at least that was the date this document was last knitted.  
-The in-line code used to do this is: 
-
-<pre>
-&#96;r Sys.Date()&#96;
-</pre>
+For example, today's date is &#96;r Sys.Date()&#96;, will be rendered as:
+today's date is 2021-06-28, which will provide us with (surprise, surprise)
+today's date (well, at least that the date this document was last knitted).  
 
 By including in-text R-code to present descriptive statistics (or test statistics),
 it will be run each time we knit the document. Which means if, for whatever reason,
@@ -333,11 +324,12 @@ Now we can make an informative statement on the means of each village, and inclu
 the mean values as in-line R-code, for example: 
 
 The average household size in the village of Chirodzo is 
-7.08.
-
-<pre>
 &#96;r round(mean_chirodzo$mean_no_members, 2)&#96;
-</pre>
+
+becomes...
+
+The average household size in the village of Chirodzo is 
+7.08.
 
 Because we are using in-line R code instead of the actual values, we have created
 a dynamic document that will automatically update if we make changes to the original

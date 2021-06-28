@@ -392,9 +392,9 @@ interviews[3, ]
 
 ~~~
 # A tibble: 1 x 14
-  key_ID village interview_date      no_membrs years_liv respondent_wall… rooms
-   <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
-1      3 God     2016-11-17 00:00:00        10        15 burntbricks          1
+  key_ID village interview_date      no_membrs years_liv respondent_wall_… rooms
+   <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>             <dbl>
+1      3 God     2016-11-17 00:00:00        10        15 burntbricks           1
 # … with 7 more variables: memb_assoc <chr>, affect_conflicts <chr>,
 #   liv_count <dbl>, items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
 #   instanceID <chr>
@@ -424,18 +424,18 @@ interviews[, -1]          # The whole tibble, except the first column
 
 ~~~
 # A tibble: 131 x 13
-   village interview_date      no_membrs years_liv respondent_wall… rooms
-   <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
- 1 God     2016-11-17 00:00:00         3         4 muddaub              1
- 2 God     2016-11-17 00:00:00         7         9 muddaub              1
- 3 God     2016-11-17 00:00:00        10        15 burntbricks          1
- 4 God     2016-11-17 00:00:00         7         6 burntbricks          1
- 5 God     2016-11-17 00:00:00         7        40 burntbricks          1
- 6 God     2016-11-17 00:00:00         3         3 muddaub              1
- 7 God     2016-11-17 00:00:00         6        38 muddaub              1
- 8 Chirod… 2016-11-16 00:00:00        12        70 burntbricks          3
- 9 Chirod… 2016-11-16 00:00:00         8         6 burntbricks          1
-10 Chirod… 2016-12-16 00:00:00        12        23 burntbricks          5
+   village  interview_date      no_membrs years_liv respondent_wall_type rooms
+   <chr>    <dttm>                  <dbl>     <dbl> <chr>                <dbl>
+ 1 God      2016-11-17 00:00:00         3         4 muddaub                  1
+ 2 God      2016-11-17 00:00:00         7         9 muddaub                  1
+ 3 God      2016-11-17 00:00:00        10        15 burntbricks              1
+ 4 God      2016-11-17 00:00:00         7         6 burntbricks              1
+ 5 God      2016-11-17 00:00:00         7        40 burntbricks              1
+ 6 God      2016-11-17 00:00:00         3         3 muddaub                  1
+ 7 God      2016-11-17 00:00:00         6        38 muddaub                  1
+ 8 Chirodzo 2016-11-16 00:00:00        12        70 burntbricks              3
+ 9 Chirodzo 2016-11-16 00:00:00         8         6 burntbricks              1
+10 Chirodzo 2016-12-16 00:00:00        12        23 burntbricks              5
 # … with 121 more rows, and 7 more variables: memb_assoc <chr>,
 #   affect_conflicts <chr>, liv_count <dbl>, items_owned <chr>, no_meals <dbl>,
 #   months_lack_food <chr>, instanceID <chr>
@@ -453,14 +453,14 @@ interviews[-c(7:131), ]   # Equivalent to head(interviews)
 
 ~~~
 # A tibble: 6 x 14
-  key_ID village interview_date      no_membrs years_liv respondent_wall… rooms
-   <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
-1      1 God     2016-11-17 00:00:00         3         4 muddaub              1
-2      1 God     2016-11-17 00:00:00         7         9 muddaub              1
-3      3 God     2016-11-17 00:00:00        10        15 burntbricks          1
-4      4 God     2016-11-17 00:00:00         7         6 burntbricks          1
-5      5 God     2016-11-17 00:00:00         7        40 burntbricks          1
-6      6 God     2016-11-17 00:00:00         3         3 muddaub              1
+  key_ID village interview_date      no_membrs years_liv respondent_wall_… rooms
+   <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>             <dbl>
+1      1 God     2016-11-17 00:00:00         3         4 muddaub               1
+2      1 God     2016-11-17 00:00:00         7         9 muddaub               1
+3      3 God     2016-11-17 00:00:00        10        15 burntbricks           1
+4      4 God     2016-11-17 00:00:00         7         6 burntbricks           1
+5      5 God     2016-11-17 00:00:00         7        40 burntbricks           1
+6      6 God     2016-11-17 00:00:00         3         3 muddaub               1
 # … with 7 more variables: memb_assoc <chr>, affect_conflicts <chr>,
 #   liv_count <dbl>, items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
 #   instanceID <chr>
