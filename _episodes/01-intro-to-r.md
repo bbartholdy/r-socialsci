@@ -249,18 +249,23 @@ to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
 
 > ## Exercise
 >
-> Create two variables `length` and `width` and assign them values. It should be noted that, because `length` and `width` are built-in R functions, R Studio might add "()" after length and width and if you leave the parentheses you will get unexpected results. This is why you might see other programmers abbreviate common words.
-> Create a third variable `area` and give it a value based on the current values of `length` and `width`.
-> Show that changing the values of either `length` and `width` does not affect the value of `area`.
+> Create two variables `r_length` and `r_width` and assign them values. It should be noted that, 
+> because `length` is a built-in R function, R Studio might add "()" after you type `length` and 
+> if you leave the parentheses you will get unexpected results. 
+> This is why you might see other programmers abbreviate common words.
+> Create a third variable `r_area` and give it a value based on the current values of `r_length` 
+> and `r_width`.
+> Show that changing the values of either `r_length` and `r_width` does not affect the value of 
+> `r_area`.
 > 
 > > ## Solution
 > > 
 > > 
 > > ~~~
-> > length <- 2.5
-> > width <- 3.2
-> > area <- length * width
-> > area
+> > r_length <- 2.5
+> > r_width <- 3.2
+> > r_area <- r_length * r_width
+> > r_area
 > > ~~~
 > > {: .language-r}
 > > 
@@ -274,11 +279,11 @@ to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
 > > 
 > > 
 > > ~~~
-> > # change the values of length and width
-> > length <- 7.0
-> > width <- 6.5
-> > # the value of area isn't changed
-> > area
+> > # change the values of r_length and r_width
+> > r_length <- 7.0
+> > r_width <- 6.5
+> > # the value of r_area isn't changed
+> > r_area
 > > ~~~
 > > {: .language-r}
 > > 
@@ -803,14 +808,14 @@ hh_members[hh_members < 4 | hh_members > 7]
 
 
 ~~~
-hh_members[hh_members >= 7 & hh_members == 3]
+hh_members[hh_members >= 4 & hh_members <= 7]
 ~~~
 {: .language-r}
 
 
 
 ~~~
-numeric(0)
+[1] 7 6
 ~~~
 {: .output}
 
@@ -901,7 +906,7 @@ the missing values.
 
 
 ~~~
-rooms <- c(2, 1, 1, NA, 4)
+rooms <- c(2, 1, 1, NA, 7)
 mean(rooms)
 ~~~
 {: .language-r}
@@ -937,7 +942,7 @@ mean(rooms, na.rm = TRUE)
 
 
 ~~~
-[1] 2
+[1] 2.75
 ~~~
 {: .output}
 
@@ -951,7 +956,7 @@ max(rooms, na.rm = TRUE)
 
 
 ~~~
-[1] 4
+[1] 7
 ~~~
 {: .output}
 
@@ -970,7 +975,7 @@ rooms[!is.na(rooms)]
 
 
 ~~~
-[1] 2 1 1 4
+[1] 2 1 1 7
 ~~~
 {: .output}
 
@@ -1000,7 +1005,7 @@ na.omit(rooms)
 
 
 ~~~
-[1] 2 1 1 4
+[1] 2 1 1 7
 attr(,"na.action")
 [1] 4
 attr(,"class")
@@ -1019,7 +1024,7 @@ rooms[complete.cases(rooms)]
 
 
 ~~~
-[1] 2 1 1 4
+[1] 2 1 1 7
 ~~~
 {: .output}
 Recall that you can use the `typeof()` function to find the type of your atomic vector.

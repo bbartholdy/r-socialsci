@@ -174,22 +174,27 @@ to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
 
 > ## Exercise
 >
-> Create two variables `length` and `width` and assign them values. It should be noted that, because `length` and `width` are built-in R functions, R Studio might add "()" after length and width and if you leave the parentheses you will get unexpected results. This is why you might see other programmers abbreviate common words.
-> Create a third variable `area` and give it a value based on the current values of `length` and `width`.
-> Show that changing the values of either `length` and `width` does not affect the value of `area`.
+> Create two variables `r_length` and `r_width` and assign them values. It should be noted that, 
+> because `length` is a built-in R function, R Studio might add "()" after you type `length` and 
+> if you leave the parentheses you will get unexpected results. 
+> This is why you might see other programmers abbreviate common words.
+> Create a third variable `r_area` and give it a value based on the current values of `r_length` 
+> and `r_width`.
+> Show that changing the values of either `r_length` and `r_width` does not affect the value of 
+> `r_area`.
 > 
 > > ## Solution
 > > 
 > > ```{r}
-> > length <- 2.5
-> > width <- 3.2
-> > area <- length * width
-> > area
-> > # change the values of length and width
-> > length <- 7.0
-> > width <- 6.5
-> > # the value of area isn't changed
-> > area
+> > r_length <- 2.5
+> > r_width <- 3.2
+> > r_area <- r_length * r_width
+> > r_area
+> > # change the values of r_length and r_width
+> > r_length <- 7.0
+> > r_width <- 6.5
+> > # the value of r_area isn't changed
+> > r_area
 > > ```
 > > 
 > {: .solution}
@@ -484,7 +489,7 @@ You can combine multiple tests using `&` (both conditions are true, AND) or `|`
 
 ```{r, results='show', purl=FALSE}
 hh_members[hh_members < 4 | hh_members > 7]
-hh_members[hh_members >= 7 & hh_members == 3]
+hh_members[hh_members >= 4 & hh_members <= 7]
 ```
 
 Here, `<` stands for "less than", `>` for "greater than", `>=` for "greater than
@@ -533,7 +538,7 @@ You can add the argument `na.rm=TRUE` to calculate the result while ignoring
 the missing values.
 
 ```{r, purl=FALSE}
-rooms <- c(2, 1, 1, NA, 4)
+rooms <- c(2, 1, 1, NA, 7)
 mean(rooms)
 max(rooms)
 mean(rooms, na.rm = TRUE)

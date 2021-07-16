@@ -32,7 +32,7 @@ objectives:
 questions:
 - How can I select specific rows and/or columns from a dataframe?
 - How can I combine multiple commands into a single command?
-- How can create new columns or remove existing columns from a dataframe?
+- How can I create new columns or remove existing columns from a dataframe?
 - How can I reformat a dataframe to meet my needs?
 teaching: 50
 exercises: 30
@@ -91,7 +91,7 @@ and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/mast
 
 ## Learning **`dplyr`** and **`tidyr`**
 
-To make sure, everyone will use the same dataset for this lesson, we'll read
+To make sure everyone will use the same dataset for this lesson, we'll read
 again the SAFI dataset that we downloaded earlier.
 
 
@@ -105,7 +105,7 @@ interviews <- read_csv("data/SAFI_clean.csv", na = "NULL")
 interviews
 
 ## preview the data
-# View(interviews)
+# view(interviews)
 ~~~
 {: .language-r}
 
@@ -1045,16 +1045,16 @@ interviews %>%
 # A tibble: 10 x 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1     70 Chirodzo 2016-11-16 00:00:00 uuid:1feb0108-4599-4bf9-8a07-1f5e66a50a0a
- 2    192 Chirodzo 2017-06-03 00:00:00 uuid:f94409a6-e461-4e4c-a6fb-0072d3d58b00
- 3     64 Chirodzo 2016-11-16 00:00:00 uuid:28cfd718-bf62-4d90-8100-55fafbe45d06
- 4    127 Chirodzo 2016-11-16 00:00:00 uuid:f6d04b41-b539-4e00-868a-0f62b427587d
- 5     63 Chirodzo 2016-11-16 00:00:00 uuid:86ed4328-7688-462f-aac7-d6518414526a
- 6     67 Chirodzo 2016-11-16 00:00:00 uuid:6c15d667-2860-47e3-a5e7-7f679271e419
- 7     52 Chirodzo 2016-11-16 00:00:00 uuid:6db55cb4-a853-4000-9555-757b7fae2bcf
- 8     10 Chirodzo 2016-12-16 00:00:00 uuid:8f4e49bc-da81-4356-ae34-e0d794a23721
- 9      9 Chirodzo 2016-11-16 00:00:00 uuid:846103d2-b1db-4055-b502-9cd510bb7b37
-10     43 Chirodzo 2016-11-17 00:00:00 uuid:b4dff49f-ef27-40e5-a9d1-acf287b47358
+ 1     21 Chirodzo 2016-11-16 00:00:00 uuid:cc7f75c5-d13e-43f3-97e5-4f4c03cb4b12
+ 2     55 Chirodzo 2016-11-16 00:00:00 uuid:883c0433-9891-4121-bc63-744f082c1fa0
+ 3     57 Chirodzo 2016-11-16 00:00:00 uuid:a7184e55-0615-492d-9835-8f44f3b03a71
+ 4     61 Chirodzo 2016-11-16 00:00:00 uuid:2401cf50-8859-44d9-bd14-1bf9128766f2
+ 5     50 Chirodzo 2016-11-16 00:00:00 uuid:4267c33c-53a7-46d9-8bd6-b96f58a4f92c
+ 6     62 Chirodzo 2016-11-16 00:00:00 uuid:c6597ecc-cc2a-4c35-a6dc-e62c71b345d6
+ 7      8 Chirodzo 2016-11-16 00:00:00 uuid:d6cee930-7be1-4fd9-88c0-82a08f90fb5a
+ 8     47 Chirodzo 2016-11-17 00:00:00 uuid:2d0b1936-4f82-4ec3-a3b5-7c3c8cd6cc2b
+ 9     52 Chirodzo 2016-11-16 00:00:00 uuid:6db55cb4-a853-4000-9555-757b7fae2bcf
+10    127 Chirodzo 2016-11-16 00:00:00 uuid:f6d04b41-b539-4e00-868a-0f62b427587d
 ~~~
 {: .output}
 
@@ -1323,7 +1323,7 @@ replace_na(list(items_owned = "no_listed_items")) %>%
 {: .language-r}
 
 Next, we create a new variable named `items_owned_logical`, which has one value
-(`TRUE`) for every row. This makes since, since each item in every row was owned
+(`TRUE`) for every row. This makes sense, since each item in every row was owned
 by that household. We are constructing this variable so that when spread the
 `items_owned` across multiple columns, we can fill the values of those columns
 with logical values describing whether the household did (`TRUE`) or didn't

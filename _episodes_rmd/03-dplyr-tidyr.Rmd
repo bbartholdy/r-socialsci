@@ -30,7 +30,7 @@ objectives:
 questions:
 - How can I select specific rows and/or columns from a dataframe?
 - How can I combine multiple commands into a single command?
-- How can create new columns or remove existing columns from a dataframe?
+- How can I create new columns or remove existing columns from a dataframe?
 - How can I reformat a dataframe to meet my needs?
 teaching: 50
 exercises: 30
@@ -93,7 +93,7 @@ and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/mast
 
 ## Learning **`dplyr`** and **`tidyr`**
 
-To make sure, everyone will use the same dataset for this lesson, we'll read
+To make sure everyone will use the same dataset for this lesson, we'll read
 again the SAFI dataset that we downloaded earlier.
 
 ```{r, results = 'hide', purl = FALSE, message = FALSE}
@@ -107,7 +107,7 @@ interviews <- read_csv("data/SAFI_clean.csv", na = "NULL")
 interviews
 
 ## preview the data
-# View(interviews)
+# view(interviews)
 ```
 
 We're going to learn some of the most common **`dplyr`** functions:
@@ -773,7 +773,7 @@ replace_na(list(items_owned = "no_listed_items")) %>%
 ```
 
 Next, we create a new variable named `items_owned_logical`, which has one value
-(`TRUE`) for every row. This makes since, since each item in every row was owned
+(`TRUE`) for every row. This makes sense, since each item in every row was owned
 by that household. We are constructing this variable so that when spread the
 `items_owned` across multiple columns, we can fill the values of those columns
 with logical values describing whether the household did (`TRUE`) or didn't
