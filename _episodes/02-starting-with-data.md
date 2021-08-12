@@ -101,7 +101,13 @@ inside your project, like analysis projects with data and reports in different
 subdirectories.  This is an important contrast to using `setwd()`, which 
 depends on the way you order your files on your computer. 
 
-![Illustration by [Allison Horst](https://github.com/allisonhorst)](../fig/here_horst.png)
+<figure>
+<img src="../fig/here_horst.png" title="Monsters at a fork in the road, with signs saying here, and not here. One direction, not here, leads to a scary dark forest with spiders and absolute filepaths, while the other leads to a sunny, green meadow, and a city below a rainbow and a world free of absolute filepaths. Art by Allison Horst" alt="Monsters at a fork in the road, with signs saying here, and not here. One direction, not here, leads to a scary dark forest with spiders and absolute filepaths, while the other leads to a sunny, green meadow, and a city below a rainbow and a world free of absolute filepaths. Art by Allison Horst" width="100%" style="display: block; margin: auto;" />
+<figcaption>
+Image credit: <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a>
+</figcaption>
+</figure>
+
 
 Before we can use the `read_csv()` and `here()` functions, we need to load the 
 tidyverse and here packages.
