@@ -88,8 +88,8 @@ To easily access the documentation for a package within R or RStudio, use
 `help(package = "package_name")`.
 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
-to check out this [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
-and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
+to check out this [handy data transformation with **`dplyr`** cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
+and this [one about **`tidyr`**](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf).
 
 ## Learning **`dplyr`** and **`tidyr`**
 
@@ -126,11 +126,15 @@ To select columns of a dataframe, use `select()`. The first argument to this
 function is the dataframe (`interviews`), and the subsequent arguments are the
 columns to keep, separated by commas. Alternatively, if you are selecting
 columns adjacent to each other, you can use a `:` to select a range of columns,
-read as "select columns from ___ to ___."
+read as "select columns from ___ to ___." You may have done something similar in 
+the past using subsetting. `select()` is essentially doing the same thing as 
+subsetting, using a package (`dplyr`) instead of R's base functions.
 
 ```{r, results = 'hide', purl = FALSE}
 # to select columns throughout the dataframe
 select(interviews, village, no_membrs, months_lack_food)
+# to do the same thing with subsetting
+interviews[c("village","no_membrs","months_lack_food")]
 # to select a series of connected columns
 select(interviews, village:respondent_wall_type)
 ```
@@ -506,7 +510,7 @@ how they relate to these different types of data formats.
 
 In the `interviews` data, each row contains the values of variables associated
 with each record collected (each interview in the villages), where it is stated
-that the the `key_ID` was "added to provide a unique Id for each observation"
+that the `key_ID` was "added to provide a unique Id for each observation"
 and the `instance_ID` "does this as well but it is not as convenient to use."
 
 However, with some inspection, we notice that there are more than one row in the

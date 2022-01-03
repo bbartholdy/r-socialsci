@@ -77,8 +77,7 @@ area_hectares <- 1.0
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
 be read as 3 **goes into** `x`.  For historical reasons, you can also use `=`
 for assignments, but not in every context. Because of the
-[slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
-[differences](http://r.789695.n4.nabble.com/Is-there-any-difference-between-and-tp878594p878598.html)
+[slight differences](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
 in syntax, it is good practice to always use `<-` for assignments. More 
 generally we prefer the `<-` syntax over `=` because it makes it clear what
 direction the assignment is operating (left assignment), and it increases the
@@ -618,8 +617,8 @@ factors (`factor`) and arrays (`array`).
 >
 >
 > We’ve seen that atomic vectors can be of type character, numeric (or double),
->   integer, and logical. But what happens if we try to mix these types in a
->   single vector?
+> integer, and logical. But what happens if we try to mix these types in a
+> single vector?
 >
 > > ## Solution
 > >
@@ -643,7 +642,7 @@ factors (`factor`) and arrays (`array`).
 >
 > > ## Solution
 > >
-> >  Vectors can be of only one data type. R tries to
+> > Vectors can be of only one data type. R tries to
 > > convert (coerce) the content of this vector to find a "common
 > > denominator" that doesn't lose any information.
 > {: .solution}
@@ -659,7 +658,6 @@ factors (`factor`) and arrays (`array`).
 > combined_logical <- c(num_logical, char_logical)
 > ~~~
 > {: .language-r}
-> &nbsp;
 >
 > > ## Solution
 > >
@@ -672,12 +670,12 @@ factors (`factor`) and arrays (`array`).
 > {: .solution}
 >
 > You've probably noticed that objects of different types get
->   converted into a single, shared type within a vector. In R, we
->   call converting objects from one class into another class
->   _coercion_. These conversions happen according to a hierarchy,
->   whereby some types get preferentially coerced into other
->   types. Can you draw a diagram that represents the hierarchy of how
->   these data types are coerced?
+> converted into a single, shared type within a vector. In R, we
+> call converting objects from one class into another class
+> _coercion_. These conversions happen according to a hierarchy,
+> whereby some types get preferentially coerced into other
+> types. Can you draw a diagram that represents the hierarchy of how
+> these data types are coerced?
 >
 {: .challenge}
 

@@ -86,8 +86,8 @@ To easily access the documentation for a package within R or RStudio, use
 `help(package = "package_name")`.
 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
-to check out this [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
-and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
+to check out this [handy data transformation with **`dplyr`** cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
+and this [one about **`tidyr`**](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf).
 
 ## Learning **`dplyr`** and **`tidyr`**
 
@@ -125,12 +125,16 @@ To select columns of a dataframe, use `select()`. The first argument to this
 function is the dataframe (`interviews`), and the subsequent arguments are the
 columns to keep, separated by commas. Alternatively, if you are selecting
 columns adjacent to each other, you can use a `:` to select a range of columns,
-read as "select columns from ___ to ___."
+read as "select columns from ___ to ___." You may have done something similar in 
+the past using subsetting. `select()` is essentially doing the same thing as 
+subsetting, using a package (`dplyr`) instead of R's base functions.
 
 
 ~~~
 # to select columns throughout the dataframe
 select(interviews, village, no_membrs, months_lack_food)
+# to do the same thing with subsetting
+interviews[c("village","no_membrs","months_lack_food")]
 # to select a series of connected columns
 select(interviews, village:respondent_wall_type)
 ~~~
@@ -992,7 +996,7 @@ how they relate to these different types of data formats.
 
 In the `interviews` data, each row contains the values of variables associated
 with each record collected (each interview in the villages), where it is stated
-that the the `key_ID` was "added to provide a unique Id for each observation"
+that the `key_ID` was "added to provide a unique Id for each observation"
 and the `instance_ID` "does this as well but it is not as convenient to use."
 
 However, with some inspection, we notice that there are more than one row in the
@@ -1046,16 +1050,16 @@ interviews %>%
 # A tibble: 10 × 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1     49 Chirodzo 2016-11-16 00:00:00 uuid:2303ebc1-2b3c-475a-8916-b322ebf18440
- 2     70 Chirodzo 2016-11-16 00:00:00 uuid:1feb0108-4599-4bf9-8a07-1f5e66a50a0a
- 3     62 Chirodzo 2016-11-16 00:00:00 uuid:c6597ecc-cc2a-4c35-a6dc-e62c71b345d6
- 4     61 Chirodzo 2016-11-16 00:00:00 uuid:2401cf50-8859-44d9-bd14-1bf9128766f2
- 5     67 Chirodzo 2016-11-16 00:00:00 uuid:6c15d667-2860-47e3-a5e7-7f679271e419
- 6     44 Chirodzo 2016-11-17 00:00:00 uuid:f9fadf44-d040-4fca-86c1-2835f79c4952
- 7    127 Chirodzo 2016-11-16 00:00:00 uuid:f6d04b41-b539-4e00-868a-0f62b427587d
- 8     64 Chirodzo 2016-11-16 00:00:00 uuid:28cfd718-bf62-4d90-8100-55fafbe45d06
- 9     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
-10     66 Chirodzo 2016-11-16 00:00:00 uuid:a457eab8-971b-4417-a971-2e55b8702816
+ 1     45 Chirodzo 2016-11-17 00:00:00 uuid:e3554d22-35b1-4fb9-b386-dd5866ad5792
+ 2     63 Chirodzo 2016-11-16 00:00:00 uuid:86ed4328-7688-462f-aac7-d6518414526a
+ 3     54 Chirodzo 2016-11-16 00:00:00 uuid:273ab27f-9be3-4f3b-83c9-d3e1592de919
+ 4     50 Chirodzo 2016-11-16 00:00:00 uuid:4267c33c-53a7-46d9-8bd6-b96f58a4f92c
+ 5     44 Chirodzo 2016-11-17 00:00:00 uuid:f9fadf44-d040-4fca-86c1-2835f79c4952
+ 6     59 Chirodzo 2016-11-16 00:00:00 uuid:1936db62-5732-45dc-98ff-9b3ac7a22518
+ 7     69 Chirodzo 2016-11-16 00:00:00 uuid:f86933a5-12b8-4427-b821-43c5b039401d
+ 8     57 Chirodzo 2016-11-16 00:00:00 uuid:a7184e55-0615-492d-9835-8f44f3b03a71
+ 9     58 Chirodzo 2016-11-16 00:00:00 uuid:a7a3451f-cd0d-4027-82d9-8dcd1234fcca
+10      9 Chirodzo 2016-11-16 00:00:00 uuid:846103d2-b1db-4055-b502-9cd510bb7b37
 ~~~
 {: .output}
 
