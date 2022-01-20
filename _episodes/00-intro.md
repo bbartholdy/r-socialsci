@@ -207,7 +207,7 @@ Pane Layout).
 The Default Layout is:
 - Top Left - **Source**: your scripts and documents
 - Bottom Left - **Console**: what R would look and be like without RStudio
-- Top Right - **Enviornment/History**: look here to see what you have done
+- Top Right - **Environment/History**: look here to see what you have done
 - Bottom Right - **Files** and more: see the contents of the project/working
 directory here, like your Script.R file
 
@@ -254,7 +254,10 @@ is set up properly. If you need to check it, you can use `getwd()`. If for some
 reason your working directory is not the same as the location of your RStudio 
 project, it is likely that you opened an R script or RMarkdown file **not** your
 `.Rproj` file. You should close out of RStudio and open the `.Rproj` file by 
-double clicking on the blue cube! 
+double clicking on the blue cube! If you ever need to modify your working 
+directory in a script, `setwd('my/path')` changes the working directory. This 
+should be used with caution since it makes analyses hard to share across devices
+and with other users.
 
 
 ### Downloading the data and getting set up
