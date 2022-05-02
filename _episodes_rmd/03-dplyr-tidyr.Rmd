@@ -91,6 +91,16 @@ To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
 to check out this [handy data transformation with **`dplyr`** cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
 and this [one about **`tidyr`**](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf).
 
+> ## Note
+>
+> There are alternatives to the `tidyverse` packages for data wrangling, including
+> the package [`data.table`](https://rdatatable.gitlab.io/data.table/). See this 
+> [comparison](https://mgimond.github.io/rug_2019_12/Index.html)
+> for example to get a sense of the differences between using `base`, `tidyverse`, and 
+> `data.table`.
+{: .callout}
+
+
 ## Learning **`dplyr`** and **`tidyr`**
 
 To make sure everyone will use the same dataset for this lesson, we'll read
@@ -818,8 +828,10 @@ interviews_items_owned %>%
 Or below we calculate the average number of items from the list owned by
 respondents in each village. This code uses the `rowSums()` function to count
 the number of `TRUE` values in the `bicycle` to `car` columns for each row,
-hence its name. We then group the data by villages and calculate the mean
-number of items, so each average is grouped by village.
+hence its name. Note that we replaced `NA` values with the value `no_listed_items`,
+so we must exclude this value in the aggregation. We then group the data by 
+villages and calculate the mean number of items, so each average is grouped
+by village.
 
 ```{r, purl = FALSE}
 interviews_items_owned %>%

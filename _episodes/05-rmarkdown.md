@@ -97,9 +97,9 @@ independent.
 Some platforms provide a real time preview of the formatting, like RStudio's 
 visual markdown editor (available from version 1.4).
 
-First, let's create a header! A `#` in front of text indicates to Markdown that 
-this text is a header. Adding more `#`s make the header smaller, i.e. one `#` is 
-a first level header, two `##`s is a second level header, etc.
+First, let's create a heading! A `#` in front of text indicates to Markdown that 
+this text is a heading. Adding more `#`s make the heading smaller, i.e. one `#` is 
+a first level heading, two `##`s is a second level heading, etc. upto the 6th level heading.
 
 ```
 # Title
@@ -107,10 +107,12 @@ a first level header, two `##`s is a second level header, etc.
 ### Sub-section
 #### Sub-sub section
 ##### Sub-sub-sub section
+###### Sub-sub-sub-sub section
 ```
+(only use a level if the one above is also in use)
 
 Since we have already defined our title in the YAML header, we will use a 
-section header to create an Introduction section.
+section heading to create an Introduction section.
 
 ```
 ## Introduction
@@ -213,7 +215,7 @@ Here is where you place the R code that you want to run.
 </pre>
 
 An R Markdown document knows that this text is not part of the report from the 
-three `&#96;&#96;&#96` that begin and end the chunk. It also knows that the code
+`&#96;&#96;&#96` that begins and ends the chunk. It also knows that the code
 inside of the chunk is R code from the `r` inside of the curly braces (`{}`). 
 After the `r` you can add a name for the code chunk . Naming a chunk is
 optional, but recommended. Each chunk name must be unique, and only contain
@@ -349,7 +351,7 @@ uses one backtick (``` `r` ```), whereas code chunks use three backticks
 (&#96;&#96;&#96; r &#96;&#96;&#96;). 
 
 For example, today's date is &#96;r Sys.Date()&#96;, will be rendered as: 
-today's date is 2022-01-20.  
+today's date is 2022-05-02.  
 The code will display today's date in the output document (well, technically the 
 date the document was last knitted).
 
@@ -374,7 +376,7 @@ Now we can make an informative statement on the means of each village, and inclu
 the mean values as in-line R-code. For example: 
 
 The average household size in the village of Chirodzo is 
-&#96;r round(mean_chirodzo$mean_no_members, 2)&#96;
+&#96;r round(mean_chirodzo$mean_no_membrs, 2)&#96;
 
 becomes...
 

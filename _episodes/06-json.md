@@ -57,36 +57,22 @@ Because detailed surveys are by nature nested structures making it possible to r
 
 ~~~
 library(jsonlite)
+
+json_data <- read_json(path='https://raw.githubusercontent.com/datacarpentry/r-socialsci/main/data/SAFI.json')
 ~~~
 {: .language-r}
 
+If you've already downloaded the data to your `data` directory, simply run
 
-
-~~~
-
-Attaching package: 'jsonlite'
-~~~
-{: .output}
-
-
-
-~~~
-The following object is masked from 'package:purrr':
-
-    flatten
-~~~
-{: .output}
-
-
-
-~~~
+`{r eval=FALSE}
 json_data <- read_json(path='data/SAFI.json')
-~~~
-{: .language-r}
+```
 
 We can see that a new object called json_data has appeared in our Environment. It is described as a Large list (131 elements). In this current form, our data is messy. You can have a glimpse of it with the `head()` or `view()` functions. It will look not much more structured than if you were to open the JSON file with a text editor. 
 
 This is because, by default, the `read_json()` function's parameter `simplifyVector`, which specifies whether or not to simplify vectors is set to FALSE. This means that the default setting does not simplify nested lists into vectors and data frames. However, we can set this to TRUE, and our data will be read directly as a dataframe: 
+
+
 
 
 ~~~
@@ -192,7 +178,7 @@ $ `_members_count`               <chr> "3", "7", "10", "7", "7", "3", "6", "12â€
 Looking good, but you might notice that actually we have a variable, *F_liv* that is a list of dataframes! It is very important to know what you are expecting from your data to be able to look for things like this. For example, if you are getting your JSON from an API, have a look at the API documentation, so you know what to look for. 
 
 
-So what can we do about this column of dataframes? Well first things first, we can example each one. For  example to access the dataframe in the first row, we can use the  bracket (`[`) subsetting. Here we use single bracket, but you could also use double bracket (`[[`). The `[[` form allows only a single element to be selected using integer or character indices, whereas `[` allows indexing by vectors. 
+So what can we do about this column of dataframes? Well first things first, we can access each one. For  example to access the dataframe in the first row, we can use the  bracket (`[`) subsetting. Here we use single bracket, but you could also use double bracket (`[[`). The `[[` form allows only a single element to be selected using integer or character indices, whereas `[` allows indexing by vectors. 
 
 
 
