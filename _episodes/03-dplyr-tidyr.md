@@ -165,21 +165,22 @@ filter(interviews, village == "Chirodzo")
 
 ~~~
 # A tibble: 39 × 14
-   key_ID village interview_date      no_membrs years_liv respondent_wall… rooms
-    <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
- 1      8 Chirod… 2016-11-16 00:00:00        12        70 burntbricks          3
- 2      9 Chirod… 2016-11-16 00:00:00         8         6 burntbricks          1
- 3     10 Chirod… 2016-12-16 00:00:00        12        23 burntbricks          5
- 4     34 Chirod… 2016-11-17 00:00:00         8        18 burntbricks          3
- 5     35 Chirod… 2016-11-17 00:00:00         5        45 muddaub              1
- 6     36 Chirod… 2016-11-17 00:00:00         6        23 sunbricks            1
- 7     37 Chirod… 2016-11-17 00:00:00         3         8 burntbricks          1
- 8     43 Chirod… 2016-11-17 00:00:00         7        29 muddaub              1
- 9     44 Chirod… 2016-11-17 00:00:00         2         6 muddaub              1
-10     45 Chirod… 2016-11-17 00:00:00         9         7 muddaub              1
-# … with 29 more rows, and 7 more variables: memb_assoc <chr>,
-#   affect_conflicts <chr>, liv_count <dbl>, items_owned <chr>, no_meals <dbl>,
-#   months_lack_food <chr>, instanceID <chr>
+   key_ID village  interview_date      no_membrs years_liv respo…¹ rooms memb_…²
+    <dbl> <chr>    <dttm>                  <dbl>     <dbl> <chr>   <dbl> <chr>  
+ 1      8 Chirodzo 2016-11-16 00:00:00        12        70 burntb…     3 yes    
+ 2      9 Chirodzo 2016-11-16 00:00:00         8         6 burntb…     1 no     
+ 3     10 Chirodzo 2016-12-16 00:00:00        12        23 burntb…     5 no     
+ 4     34 Chirodzo 2016-11-17 00:00:00         8        18 burntb…     3 yes    
+ 5     35 Chirodzo 2016-11-17 00:00:00         5        45 muddaub     1 yes    
+ 6     36 Chirodzo 2016-11-17 00:00:00         6        23 sunbri…     1 yes    
+ 7     37 Chirodzo 2016-11-17 00:00:00         3         8 burntb…     1 <NA>   
+ 8     43 Chirodzo 2016-11-17 00:00:00         7        29 muddaub     1 no     
+ 9     44 Chirodzo 2016-11-17 00:00:00         2         6 muddaub     1 <NA>   
+10     45 Chirodzo 2016-11-17 00:00:00         9         7 muddaub     1 no     
+# … with 29 more rows, 6 more variables: affect_conflicts <chr>,
+#   liv_count <dbl>, items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
+#   instanceID <chr>, and abbreviated variable names ¹​respondent_wall_type,
+#   ²​memb_assoc
 ~~~
 {: .output}
 
@@ -204,21 +205,22 @@ filter(interviews, village == "Chirodzo",
 
 ~~~
 # A tibble: 10 × 14
-   key_ID village interview_date      no_membrs years_liv respondent_wall… rooms
-    <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
- 1     10 Chirod… 2016-12-16 00:00:00        12        23 burntbricks          5
- 2     49 Chirod… 2016-11-16 00:00:00         6        26 burntbricks          2
- 3     52 Chirod… 2016-11-16 00:00:00        11        15 burntbricks          3
- 4     56 Chirod… 2016-11-16 00:00:00        12        23 burntbricks          2
- 5     65 Chirod… 2016-11-16 00:00:00         8        20 burntbricks          3
- 6     66 Chirod… 2016-11-16 00:00:00        10        37 burntbricks          3
- 7     67 Chirod… 2016-11-16 00:00:00         5        31 burntbricks          2
- 8     68 Chirod… 2016-11-16 00:00:00         8        52 burntbricks          3
- 9    199 Chirod… 2017-06-04 00:00:00         7        17 burntbricks          2
-10    200 Chirod… 2017-06-04 00:00:00         8        20 burntbricks          2
-# … with 7 more variables: memb_assoc <chr>, affect_conflicts <chr>,
-#   liv_count <dbl>, items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
-#   instanceID <chr>
+   key_ID village  interview_date      no_membrs years_liv respo…¹ rooms memb_…²
+    <dbl> <chr>    <dttm>                  <dbl>     <dbl> <chr>   <dbl> <chr>  
+ 1     10 Chirodzo 2016-12-16 00:00:00        12        23 burntb…     5 no     
+ 2     49 Chirodzo 2016-11-16 00:00:00         6        26 burntb…     2 <NA>   
+ 3     52 Chirodzo 2016-11-16 00:00:00        11        15 burntb…     3 no     
+ 4     56 Chirodzo 2016-11-16 00:00:00        12        23 burntb…     2 yes    
+ 5     65 Chirodzo 2016-11-16 00:00:00         8        20 burntb…     3 no     
+ 6     66 Chirodzo 2016-11-16 00:00:00        10        37 burntb…     3 yes    
+ 7     67 Chirodzo 2016-11-16 00:00:00         5        31 burntb…     2 no     
+ 8     68 Chirodzo 2016-11-16 00:00:00         8        52 burntb…     3 no     
+ 9    199 Chirodzo 2017-06-04 00:00:00         7        17 burntb…     2 yes    
+10    200 Chirodzo 2017-06-04 00:00:00         8        20 burntb…     2 <NA>   
+# … with 6 more variables: affect_conflicts <chr>, liv_count <dbl>,
+#   items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
+#   instanceID <chr>, and abbreviated variable names ¹​respondent_wall_type,
+#   ²​memb_assoc
 ~~~
 {: .output}
 
@@ -238,21 +240,22 @@ filter(interviews, village == "Chirodzo" &
 
 ~~~
 # A tibble: 10 × 14
-   key_ID village interview_date      no_membrs years_liv respondent_wall… rooms
-    <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
- 1     10 Chirod… 2016-12-16 00:00:00        12        23 burntbricks          5
- 2     49 Chirod… 2016-11-16 00:00:00         6        26 burntbricks          2
- 3     52 Chirod… 2016-11-16 00:00:00        11        15 burntbricks          3
- 4     56 Chirod… 2016-11-16 00:00:00        12        23 burntbricks          2
- 5     65 Chirod… 2016-11-16 00:00:00         8        20 burntbricks          3
- 6     66 Chirod… 2016-11-16 00:00:00        10        37 burntbricks          3
- 7     67 Chirod… 2016-11-16 00:00:00         5        31 burntbricks          2
- 8     68 Chirod… 2016-11-16 00:00:00         8        52 burntbricks          3
- 9    199 Chirod… 2017-06-04 00:00:00         7        17 burntbricks          2
-10    200 Chirod… 2017-06-04 00:00:00         8        20 burntbricks          2
-# … with 7 more variables: memb_assoc <chr>, affect_conflicts <chr>,
-#   liv_count <dbl>, items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
-#   instanceID <chr>
+   key_ID village  interview_date      no_membrs years_liv respo…¹ rooms memb_…²
+    <dbl> <chr>    <dttm>                  <dbl>     <dbl> <chr>   <dbl> <chr>  
+ 1     10 Chirodzo 2016-12-16 00:00:00        12        23 burntb…     5 no     
+ 2     49 Chirodzo 2016-11-16 00:00:00         6        26 burntb…     2 <NA>   
+ 3     52 Chirodzo 2016-11-16 00:00:00        11        15 burntb…     3 no     
+ 4     56 Chirodzo 2016-11-16 00:00:00        12        23 burntb…     2 yes    
+ 5     65 Chirodzo 2016-11-16 00:00:00         8        20 burntb…     3 no     
+ 6     66 Chirodzo 2016-11-16 00:00:00        10        37 burntb…     3 yes    
+ 7     67 Chirodzo 2016-11-16 00:00:00         5        31 burntb…     2 no     
+ 8     68 Chirodzo 2016-11-16 00:00:00         8        52 burntb…     3 no     
+ 9    199 Chirodzo 2017-06-04 00:00:00         7        17 burntb…     2 yes    
+10    200 Chirodzo 2017-06-04 00:00:00         8        20 burntb…     2 <NA>   
+# … with 6 more variables: affect_conflicts <chr>, liv_count <dbl>,
+#   items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
+#   instanceID <chr>, and abbreviated variable names ¹​respondent_wall_type,
+#   ²​memb_assoc
 ~~~
 {: .output}
 
@@ -271,21 +274,22 @@ filter(interviews, village == "Chirodzo" | village == "Ruaca")
 
 ~~~
 # A tibble: 88 × 14
-   key_ID village interview_date      no_membrs years_liv respondent_wall… rooms
-    <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
- 1      8 Chirod… 2016-11-16 00:00:00        12        70 burntbricks          3
- 2      9 Chirod… 2016-11-16 00:00:00         8         6 burntbricks          1
- 3     10 Chirod… 2016-12-16 00:00:00        12        23 burntbricks          5
- 4     23 Ruaca   2016-11-21 00:00:00        10        20 burntbricks          4
- 5     24 Ruaca   2016-11-21 00:00:00         6         4 burntbricks          2
- 6     25 Ruaca   2016-11-21 00:00:00        11         6 burntbricks          3
- 7     26 Ruaca   2016-11-21 00:00:00         3        20 burntbricks          2
- 8     27 Ruaca   2016-11-21 00:00:00         7        36 burntbricks          2
- 9     28 Ruaca   2016-11-21 00:00:00         2         2 muddaub              1
-10     29 Ruaca   2016-11-21 00:00:00         7        10 burntbricks          2
-# … with 78 more rows, and 7 more variables: memb_assoc <chr>,
-#   affect_conflicts <chr>, liv_count <dbl>, items_owned <chr>, no_meals <dbl>,
-#   months_lack_food <chr>, instanceID <chr>
+   key_ID village  interview_date      no_membrs years_liv respo…¹ rooms memb_…²
+    <dbl> <chr>    <dttm>                  <dbl>     <dbl> <chr>   <dbl> <chr>  
+ 1      8 Chirodzo 2016-11-16 00:00:00        12        70 burntb…     3 yes    
+ 2      9 Chirodzo 2016-11-16 00:00:00         8         6 burntb…     1 no     
+ 3     10 Chirodzo 2016-12-16 00:00:00        12        23 burntb…     5 no     
+ 4     23 Ruaca    2016-11-21 00:00:00        10        20 burntb…     4 <NA>   
+ 5     24 Ruaca    2016-11-21 00:00:00         6         4 burntb…     2 no     
+ 6     25 Ruaca    2016-11-21 00:00:00        11         6 burntb…     3 no     
+ 7     26 Ruaca    2016-11-21 00:00:00         3        20 burntb…     2 no     
+ 8     27 Ruaca    2016-11-21 00:00:00         7        36 burntb…     2 <NA>   
+ 9     28 Ruaca    2016-11-21 00:00:00         2         2 muddaub     1 no     
+10     29 Ruaca    2016-11-21 00:00:00         7        10 burntb…     2 yes    
+# … with 78 more rows, 6 more variables: affect_conflicts <chr>,
+#   liv_count <dbl>, items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
+#   instanceID <chr>, and abbreviated variable names ¹​respondent_wall_type,
+#   ²​memb_assoc
 ~~~
 {: .output}
 
@@ -360,15 +364,15 @@ interviews %>%
 
 In the above code, we use the pipe to send the `interviews` dataset first
 through `filter()` to keep rows where `village` is "Chirodzo", then through
-`select()` to keep only the `no_membrs` and `years_liv` columns. Since `%>%`
+`select()` to keep only the columns from `village` to `respondent_wall_type`. Since `%>%`
 takes the object on its left and passes it as the first argument to the function
 on its right, we don't need to explicitly include the dataframe as an argument
 to the `filter()` and `select()` functions any more.
 
 Some may find it helpful to read the pipe like the word "then". For instance,
 in the above example, we take the dataframe `interviews`, *then* we `filter`
-for rows with `village == "Chirodzo"`, *then* we `select` columns `no_membrs` and
-`years_liv`. The **`dplyr`** functions by themselves are somewhat simple,
+for rows with `village == "Chirodzo"`, *then* we `select` columns `village:respondent_wall_type`.
+The **`dplyr`** functions by themselves are somewhat simple,
 but by combining them into linear workflows with the pipe, we can accomplish
 more complex data wrangling operations.
 
@@ -467,21 +471,22 @@ interviews %>%
 
 ~~~
 # A tibble: 131 × 15
-   key_ID village interview_date      no_membrs years_liv respondent_wall… rooms
-    <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
- 1      1 God     2016-11-17 00:00:00         3         4 muddaub              1
- 2      1 God     2016-11-17 00:00:00         7         9 muddaub              1
- 3      3 God     2016-11-17 00:00:00        10        15 burntbricks          1
- 4      4 God     2016-11-17 00:00:00         7         6 burntbricks          1
- 5      5 God     2016-11-17 00:00:00         7        40 burntbricks          1
- 6      6 God     2016-11-17 00:00:00         3         3 muddaub              1
- 7      7 God     2016-11-17 00:00:00         6        38 muddaub              1
- 8      8 Chirod… 2016-11-16 00:00:00        12        70 burntbricks          3
- 9      9 Chirod… 2016-11-16 00:00:00         8         6 burntbricks          1
-10     10 Chirod… 2016-12-16 00:00:00        12        23 burntbricks          5
-# … with 121 more rows, and 8 more variables: memb_assoc <chr>,
-#   affect_conflicts <chr>, liv_count <dbl>, items_owned <chr>, no_meals <dbl>,
-#   months_lack_food <chr>, instanceID <chr>, people_per_room <dbl>
+   key_ID village  interview_date      no_membrs years_liv respo…¹ rooms memb_…²
+    <dbl> <chr>    <dttm>                  <dbl>     <dbl> <chr>   <dbl> <chr>  
+ 1      1 God      2016-11-17 00:00:00         3         4 muddaub     1 <NA>   
+ 2      1 God      2016-11-17 00:00:00         7         9 muddaub     1 yes    
+ 3      3 God      2016-11-17 00:00:00        10        15 burntb…     1 <NA>   
+ 4      4 God      2016-11-17 00:00:00         7         6 burntb…     1 <NA>   
+ 5      5 God      2016-11-17 00:00:00         7        40 burntb…     1 <NA>   
+ 6      6 God      2016-11-17 00:00:00         3         3 muddaub     1 <NA>   
+ 7      7 God      2016-11-17 00:00:00         6        38 muddaub     1 no     
+ 8      8 Chirodzo 2016-11-16 00:00:00        12        70 burntb…     3 yes    
+ 9      9 Chirodzo 2016-11-16 00:00:00         8         6 burntb…     1 no     
+10     10 Chirodzo 2016-12-16 00:00:00        12        23 burntb…     5 no     
+# … with 121 more rows, 7 more variables: affect_conflicts <chr>,
+#   liv_count <dbl>, items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
+#   instanceID <chr>, people_per_room <dbl>, and abbreviated variable names
+#   ¹​respondent_wall_type, ²​memb_assoc
 ~~~
 {: .output}
 
@@ -506,21 +511,22 @@ interviews %>%
 
 ~~~
 # A tibble: 92 × 15
-   key_ID village interview_date      no_membrs years_liv respondent_wall… rooms
-    <dbl> <chr>   <dttm>                  <dbl>     <dbl> <chr>            <dbl>
- 1      1 God     2016-11-17 00:00:00         7         9 muddaub              1
- 2      7 God     2016-11-17 00:00:00         6        38 muddaub              1
- 3      8 Chirod… 2016-11-16 00:00:00        12        70 burntbricks          3
- 4      9 Chirod… 2016-11-16 00:00:00         8         6 burntbricks          1
- 5     10 Chirod… 2016-12-16 00:00:00        12        23 burntbricks          5
- 6     12 God     2016-11-21 00:00:00         7        20 burntbricks          3
- 7     13 God     2016-11-21 00:00:00         6         8 burntbricks          1
- 8     15 God     2016-11-21 00:00:00         5        30 sunbricks            2
- 9     21 God     2016-11-21 00:00:00         8        20 burntbricks          1
-10     24 Ruaca   2016-11-21 00:00:00         6         4 burntbricks          2
-# … with 82 more rows, and 8 more variables: memb_assoc <chr>,
-#   affect_conflicts <chr>, liv_count <dbl>, items_owned <chr>, no_meals <dbl>,
-#   months_lack_food <chr>, instanceID <chr>, people_per_room <dbl>
+   key_ID village  interview_date      no_membrs years_liv respo…¹ rooms memb_…²
+    <dbl> <chr>    <dttm>                  <dbl>     <dbl> <chr>   <dbl> <chr>  
+ 1      1 God      2016-11-17 00:00:00         7         9 muddaub     1 yes    
+ 2      7 God      2016-11-17 00:00:00         6        38 muddaub     1 no     
+ 3      8 Chirodzo 2016-11-16 00:00:00        12        70 burntb…     3 yes    
+ 4      9 Chirodzo 2016-11-16 00:00:00         8         6 burntb…     1 no     
+ 5     10 Chirodzo 2016-12-16 00:00:00        12        23 burntb…     5 no     
+ 6     12 God      2016-11-21 00:00:00         7        20 burntb…     3 yes    
+ 7     13 God      2016-11-21 00:00:00         6         8 burntb…     1 no     
+ 8     15 God      2016-11-21 00:00:00         5        30 sunbri…     2 yes    
+ 9     21 God      2016-11-21 00:00:00         8        20 burntb…     1 no     
+10     24 Ruaca    2016-11-21 00:00:00         6         4 burntb…     2 no     
+# … with 82 more rows, 7 more variables: affect_conflicts <chr>,
+#   liv_count <dbl>, items_owned <chr>, no_meals <dbl>, months_lack_food <chr>,
+#   instanceID <chr>, people_per_room <dbl>, and abbreviated variable names
+#   ¹​respondent_wall_type, ²​memb_assoc
 ~~~
 {: .output}
 
@@ -1067,16 +1073,16 @@ interviews %>%
 # A tibble: 10 × 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1     35 Chirodzo 2016-11-17 00:00:00 uuid:ff7496e7-984a-47d3-a8a1-13618b5683ce
- 2     34 Chirodzo 2016-11-17 00:00:00 uuid:14c78c45-a7cc-4b2a-b765-17c82b43feb4
- 3     46 Chirodzo 2016-11-17 00:00:00 uuid:35f297e0-aa5d-4149-9b7b-4965004cfc37
- 4    127 Chirodzo 2016-11-16 00:00:00 uuid:f6d04b41-b539-4e00-868a-0f62b427587d
- 5     57 Chirodzo 2016-11-16 00:00:00 uuid:a7184e55-0615-492d-9835-8f44f3b03a71
- 6     68 Chirodzo 2016-11-16 00:00:00 uuid:ef04b3eb-b47d-412e-9b09-4f5e08fc66f9
- 7     21 Chirodzo 2016-11-16 00:00:00 uuid:cc7f75c5-d13e-43f3-97e5-4f4c03cb4b12
- 8     43 Chirodzo 2016-11-17 00:00:00 uuid:b4dff49f-ef27-40e5-a9d1-acf287b47358
- 9     48 Chirodzo 2016-11-16 00:00:00 uuid:e180899c-7614-49eb-a97c-40ed013a38a2
-10     51 Chirodzo 2016-11-16 00:00:00 uuid:18ac8e77-bdaf-47ab-85a2-e4c947c9d3ce
+ 1     52 Chirodzo 2016-11-16 00:00:00 uuid:6db55cb4-a853-4000-9555-757b7fae2bcf
+ 2     57 Chirodzo 2016-11-16 00:00:00 uuid:a7184e55-0615-492d-9835-8f44f3b03a71
+ 3     56 Chirodzo 2016-11-16 00:00:00 uuid:973c4ac6-f887-48e7-aeaf-4476f2cfab76
+ 4     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
+ 5     48 Chirodzo 2016-11-16 00:00:00 uuid:e180899c-7614-49eb-a97c-40ed013a38a2
+ 6     49 Chirodzo 2016-11-16 00:00:00 uuid:2303ebc1-2b3c-475a-8916-b322ebf18440
+ 7     46 Chirodzo 2016-11-17 00:00:00 uuid:35f297e0-aa5d-4149-9b7b-4965004cfc37
+ 8     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
+ 9     70 Chirodzo 2016-11-16 00:00:00 uuid:1feb0108-4599-4bf9-8a07-1f5e66a50a0a
+10     66 Chirodzo 2016-11-16 00:00:00 uuid:a457eab8-971b-4417-a971-2e55b8702816
 ~~~
 {: .output}
 
@@ -1233,16 +1239,16 @@ To recreate our original dataframe, we will use the following:
 
 ~~~
 interviews_long <- interviews_wide %>%
-    pivot_longer(cols = burntbricks:sunbricks,
-                 names_to = "respondent_wall_type",
-                 values_to = "wall_type_logical")
+  pivot_longer(cols = c("muddaub", "cement", "sunbricks", "burntbricks"),
+               names_to = "respondent_wall_type",
+               values_to = "wall_type_logical")
 ~~~
 {: .language-r}
 
 
 ![](../fig/pivot_wide_to_long.png)
 
-This creates a dataframe with 262 rows (4 rows per
+This creates a dataframe with 524 rows (4 rows per
 interview respondent). The four rows for each respondent differ only in the
 value of the "respondent_wall_type" and "wall_type_logical" columns. View the
 data to see what this looks like.
